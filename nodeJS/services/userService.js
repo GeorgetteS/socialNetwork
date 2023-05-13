@@ -5,7 +5,6 @@ import mailService from './mailService.js';
 import tokenService from './tokenService.js';
 import { UserDto } from '../dtos/userDto.js';
 import ApiError from '../exceptions/apiError.js';
-import { where } from 'sequelize';
 
 class UserService {
   async regisration(email, password, name, surname) {
