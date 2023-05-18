@@ -1,15 +1,23 @@
 import { FC } from 'react';
 import { Button, Form, Input } from 'antd';
 
+import { LoginFormDTO } from '../../api/dto/auth.dto';
+import { useLoginMutation } from '../../api/authApi/authApi';
+
 export const LoginForm: FC = () => {
-  const onSubmit = (e) => {
-    e.preventDefault();
-    console.log(values);
+  const [login] = useLoginMutation();
+
+  const onSubmit = (value: LoginFormDTO) => {
+    try {
+      login(value);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
     <div className="">
-      <Form name="login" labelCol={{ span: 5 }} labelAlign="left">
+      <Form name="login" labelCol={{ span: 5 }} labelAlign="left" onFinish={onSubmit}>
         <Form.Item
           label="Email"
           name="email"

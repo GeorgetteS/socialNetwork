@@ -1,5 +1,8 @@
 {
-	"extends": "next/core-web-vitals",
+	"extends": [
+		"next",
+		"eslint:recommended"
+	],
 	"rules": {
 		"no-console": "warn",
 		"prefer-const": "warn",
