@@ -1,18 +1,30 @@
+import { useRouter } from 'next/router';
 import { FC } from 'react';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, notification } from 'antd';
 
 import { LoginFormDTO } from '../../api/dto/auth.dto';
 import { useLoginMutation } from '../../api/authApi/authApi';
 
 export const LoginForm: FC = () => {
   const [login] = useLoginMutation();
+  const router = useRouter();
 
-  const onSubmit = (value: LoginFormDTO) => {
-    try {
-      login(value);
-    } catch (e) {
-      console.log(e);
-    }
+  const onSubmit = (userData: LoginFormDTO) => {
+    login(userData)
+      .unwrap()
+      .then(() => {
+        notification.success({
+          message: 'Вы авторизованы!',
+        });
+        router.push('/');
+      })
+      .catch((error) => {
+        if (error.status === 401) {
+          notification.error({
+            message: error.data.message,
+          });
+        }
+      });
   };
 
   return (
@@ -21,7 +33,13 @@ export const LoginForm: FC = () => {
         <Form.Item
           label="Email"
           name="email"
-          rules={[{ required: true, message: 'Please input your email!' }]}>
+          rules={[
+            { required: true, message: 'Please input your email!' },
+            {
+              type: 'email',
+              message: 'Введите корректный email!',
+            },
+          ]}>
           <Input />
         </Form.Item>
 

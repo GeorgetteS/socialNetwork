@@ -1,5 +1,4 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import { setupListeners } from '@reduxjs/toolkit/query';
 
 import userSlice from './slices/userSlice';
 import { authApi } from '../api/authApi/authApi';
