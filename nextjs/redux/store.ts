@@ -1,6 +1,6 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
-import userSlice from './slices/userSlice';
+import userSlice from './user/userSlice';
 import { authApi } from '../api/authApi/authApi';
 
 export function makeStore() {

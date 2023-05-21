@@ -1,14 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { parseCookies, setCookie, destroyCookie } from 'nookies';
+import { HYDRATE } from 'next-redux-wrapper';
 
 import { LoginFormDTO, LoginResponseDTO, RegistrstionFormDTO } from '../dto/auth.dto';
-import { setUser, setAuth, reset } from '../../redux/slices/userSlice';
+import { setUser, setAuth, reset } from '../../redux/user/userSlice';
 
 const setUserData = (res: LoginResponseDTO, dispatch) => {
   const user = res.user;
   const token = res.refreshToken;
 
-  setCookie(null, '_token', token, {
+  setCookie(null, 'refreshToken', token, {
     path: '/',
   });
 
@@ -20,17 +21,23 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
+    credentials: 'include',
 
     prepareHeaders(headers) {
-      const token = parseCookies();
+      const { refreshToken } = parseCookies();
 
-      if (token) {
-        headers.set('authorization', `Bearer ${token._token}`);
+      if (refreshToken) {
+        headers.set('authorization', `Bearer ${refreshToken}`);
       }
 
       return headers;
     },
   }),
+  extractRehydrationInfo(action, { reducerPath }) {
+    if (action.type === HYDRATE) {
+      return action.payload[reducerPath];
+    }
+  },
   endpoints: (build) => ({
     login: build.mutation<LoginResponseDTO, Partial<LoginFormDTO>>({
       query: (body) => ({
@@ -77,7 +84,7 @@ export const authApi = createApi({
       query: () => 'logout',
       async onQueryStarted(_, { dispatch }) {
         try {
-          destroyCookie(null, '_token', {
+          destroyCookie(null, 'refreshToken', {
             path: '/',
           });
 
@@ -88,6 +95,9 @@ export const authApi = createApi({
       },
     }),
   }),
+  refetchOnMountOrArgChange: true,
+  refetchOnReconnect: true,
+  refetchOnFocus: true,
 });
 
 export const { useLoginMutation, useRegistrationMutation, useCheckAuthQuery } = authApi;

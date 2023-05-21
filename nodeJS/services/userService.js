@@ -75,6 +75,7 @@ class UserService {
   }
 
   async refresh(refreshToken) {
+    console.log(refreshToken);
     if (!refreshToken) {
       throw ApiError.UnoauthorizedError();
     }
@@ -86,10 +87,14 @@ class UserService {
       throw ApiError.UnoauthorizedError();
     }
 
-    const user = User.findOne({ where: { id: userData.id } });
+    const user = await User.findOne({ where: { id: userData.id } });
+
+    console.log(user, 'uuser');
 
     const userDto = new UserDto(user);
     const tokens = tokenService.generateToken({ ...userDto });
+
+    console.log(userDto, 'userDto');
 
     tokenService.saveToken(userDto.id, tokens.refreshToken);
 
