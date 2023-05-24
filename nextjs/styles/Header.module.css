@@ -1,0 +1,13 @@
+
+
+.root{
+	/* background: @primary-color; */
+	display: flex;
+	align-items: center;
+	background: #fff;
+}
+
+.row{
+	display: flex;
+	align-items: center;
+}

@@ -2,9 +2,11 @@ import '../styles/global.css';
 import { Provider } from 'react-redux';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { ConfigProvider } from 'antd';
 
 import { store } from '../redux/store';
 import { useCheckAuthQuery } from '../api/authApi/authApi';
+// import theme from '../theme';
 
 const MyApp = ({ Component, pageProps }) => {
   const { isLoading, error } = useCheckAuthQuery();
@@ -12,7 +14,7 @@ const MyApp = ({ Component, pageProps }) => {
 
   useEffect(() => {
     if (error) {
-      router.push('/auth');
+      router.push('/');
     }
   }, [error]);
 
@@ -21,9 +23,9 @@ const MyApp = ({ Component, pageProps }) => {
   }
 
   return (
-    <div>
+    <ConfigProvider theme="light">
       <Component {...pageProps} />
-    </div>
+    </ConfigProvider>
   );
 };
 
