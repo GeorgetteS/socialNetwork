@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
-import styles from '../../styles/UserProfile.module.css';
 import { Card, Space } from 'antd';
+
+import styles from '../../styles/UserProfile.module.css';
 import { PostConstructor } from './PostConstructor';
 
 export const UserProfile: FC = () => {

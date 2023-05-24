@@ -34,7 +34,7 @@ export const PostConstructor: FC = () => {
                 onChange={onChange}
                 listType="picture-card"
                 showUploadList={{ showPreviewIcon: false }}
-                accept=".jpg, .png, .svg, .webp">
+                accept=".jpg, .png ">
                 <Button>Загрузить фото</Button>
               </Upload>
             </ImgCrop>
