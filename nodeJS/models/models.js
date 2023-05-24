@@ -73,20 +73,6 @@ const UserChat = sequelize.define(
       allowNull: false,
       defaultValue: 'participant',
     },
-    chatId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Chat, // 'Movies' would also work
-        key: 'id',
-      },
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: User, // 'Actors' would also work
-        key: 'id',
-      },
-    },
   },
   {
     tableName: 'users_chats',
@@ -123,13 +109,9 @@ const Post = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    title: {
-      type: DataTypes.STRING(30),
-      allowNull: false,
-    },
+
     text: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
   },
   {
@@ -167,23 +149,28 @@ const PostLike = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    postId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Post,
-        key: 'id',
-      },
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: User,
-        key: 'id',
-      },
-    },
   },
   {
     tableName: 'post_likes',
+    timestamps: true,
+  },
+);
+
+const PostImage = sequelize.define(
+  'PostImage',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    tableName: 'post_images',
     timestamps: true,
   },
 );
@@ -199,20 +186,20 @@ const Friend = sequelize.define(
     status: {
       type: DataTypes.STRING(30),
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: User,
-        key: 'id',
-      },
-    },
-    friendId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: User,
-        key: 'id',
-      },
-    },
+    // userId: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: User,
+    //     key: 'id',
+    //   },
+    // },
+    // friendId: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: User,
+    //     key: 'id',
+    //   },
+    // },
   },
   {
     tableName: 'friends',
@@ -256,7 +243,10 @@ Post.belongsTo(User);
 Post.hasMany(Comment);
 Comment.belongsTo(Post);
 
+Post.hasMany(PostImage);
+PostImage.belongsTo(Post);
+
 User.belongsToMany(Post, { through: PostLike, as: 'liked_posts' });
 Post.belongsToMany(User, { through: PostLike, as: 'liked_by_users' });
 
-export { UserChat, Chat, Message, Post, Token, User, Comment };
+export { UserChat, Chat, Message, Post, Token, User, Comment, PostImage, PostLike };
