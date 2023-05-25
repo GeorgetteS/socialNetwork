@@ -1,4 +1,4 @@
-import { Post, PostImage } from '../models/models.js';
+import { Post, PostImage, User } from '../models/models.js';
 
 class PostService {
   async create(text, UserId, fileNames) {
@@ -17,24 +17,33 @@ class PostService {
     return { createdPost, postImages };
   }
 
-  async getAll() {
-    const posts = await Post.find();
+  async getAllByUserId(id) {
+    const posts = await User.findAll({
+      where: { id },
+      include: [
+        {
+          model: Post,
+        },
+      ],
+    });
     return posts;
   }
 
-  async getOne(id) {
+  async update(id, text) {
     if (!id) {
       throw new Error('Id не указан');
     }
-    const post = await Post.findById(id);
-    return post;
-  }
+    await Post.update(
+      { text },
+      {
+        where: {
+          id,
+        },
+      },
+    );
 
-  async update(post) {
-    if (!post._id) {
-      throw new Error('Id не указан');
-    }
-    const updatedPost = await Post.findByIdAndUpdate(post._id, post, { new: true });
+    const updatedPost = await Post.findOne({ where: id });
+
     return updatedPost;
   }
 
@@ -42,7 +51,7 @@ class PostService {
     if (!id) {
       throw new Error('Id не указан');
     }
-    const post = await Post.findByIdAndDelete(id);
+    const post = await Post.destroy({ where: { id } });
     return post;
   }
 }
