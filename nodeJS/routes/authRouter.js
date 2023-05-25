@@ -4,21 +4,21 @@ import express from 'express';
 import AuthController from '../controllers/authController.js';
 import authMiddleware from '../middlewares/authMiddleware.js';
 
-const userRouter = express.Router();
+const authRouter = express.Router();
 
-userRouter.post(
+authRouter.post(
   '/registration',
   body('email').isEmail(),
   body('password').isLength({ min: 3, max: 20 }),
   AuthController.registration,
 );
 
-userRouter.post('/login', AuthController.login);
+authRouter.post('/login', AuthController.login);
 
-userRouter.post('/logout', AuthController.logout);
+authRouter.post('/logout', AuthController.logout);
 
-userRouter.get('/activate/:link', AuthController.activate);
+authRouter.get('/activate/:link', AuthController.activate);
 
-userRouter.get('/refresh', AuthController.refresh);
+authRouter.get('/refresh', AuthController.refresh);
 
-export default userRouter;
+export default authRouter;
