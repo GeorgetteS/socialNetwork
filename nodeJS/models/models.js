@@ -120,8 +120,8 @@ const Post = sequelize.define(
   },
 );
 
-const Comment = sequelize.define(
-  'Comment',
+const PostComment = sequelize.define(
+  'PostComment',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -134,7 +134,7 @@ const Comment = sequelize.define(
     },
   },
   {
-    tableName: 'comments',
+    tableName: 'post_comments',
     timestamps: true,
     createdAt: true,
     updatedAt: true,
@@ -240,13 +240,16 @@ User.belongsToMany(User, { through: Friend, as: 'friends', foreignKey: 'userId' 
 User.hasMany(Post);
 Post.belongsTo(User);
 
-Post.hasMany(Comment);
-Comment.belongsTo(Post);
-
 Post.hasMany(PostImage);
 PostImage.belongsTo(Post);
+
+Post.hasMany(PostComment);
+PostComment.belongsTo(Post);
+
+User.hasMany(PostComment);
+PostComment.hasOne(User);
 
 User.belongsToMany(Post, { through: PostLike, as: 'liked_posts' });
 Post.belongsToMany(User, { through: PostLike, as: 'liked_by_users' });
 
-export { UserChat, Chat, Message, Post, Token, User, Comment, PostImage, PostLike };
+export { UserChat, Chat, Message, Post, Token, User, PostComment, PostImage, PostLike };

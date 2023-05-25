@@ -6,16 +6,17 @@ import cookieParser from 'cookie-parser';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
+
 import sequelize from './db.js';
 import router from './routes/index.js';
 import * as models from './models/models.js';
 import errorMiddleware from './middlewares/errorMiddleware.js';
 
+const app = express();
+
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
-
-const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

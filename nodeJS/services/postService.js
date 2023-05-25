@@ -1,4 +1,4 @@
-import { Post, PostImage, User } from '../models/models.js';
+import { Post, PostComment, PostImage, PostLike, User } from '../models/models.js';
 
 class PostService {
   async create(text, UserId, fileNames) {
@@ -15,18 +15,6 @@ class PostService {
     const postImages = await PostImage.bulkCreate(images);
 
     return { createdPost, postImages };
-  }
-
-  async getAllByUserId(id) {
-    const posts = await User.findAll({
-      where: { id },
-      include: [
-        {
-          model: Post,
-        },
-      ],
-    });
-    return posts;
   }
 
   async update(id, text) {
@@ -53,6 +41,49 @@ class PostService {
     }
     const post = await Post.destroy({ where: { id } });
     return post;
+  }
+
+  async createComment(PostId, UserId, text) {
+    const createdComment = await PostComment.create({ text, UserId, PostId });
+
+    return createdComment;
+  }
+
+  async updateComment(id, text) {
+    await PostComment.update(
+      { text },
+      {
+        where: {
+          id,
+        },
+      },
+    );
+
+    const updatedComment = await PostComment.findOne({ where: id });
+
+    return updatedComment;
+  }
+
+  async deleteComment(id) {
+    if (!id) {
+      throw new Error('Id не указан');
+    }
+    const deletedComment = await PostComment.destroy({ where: { id } });
+    return deletedComment;
+  }
+
+  async setLike(UserId, PostId) {
+    const createdComment = await PostLike.create({ UserId, PostId });
+
+    return createdComment;
+  }
+
+  async deleteLike(id) {
+    if (!id) {
+      throw new Error('Id не указан');
+    }
+    const deletedComment = await PostLike.destroy({ where: { id } });
+    return deletedComment;
   }
 }
 
