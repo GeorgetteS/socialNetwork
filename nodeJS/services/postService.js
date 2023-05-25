@@ -4,6 +4,10 @@ class PostService {
   async create(text, UserId, fileNames) {
     const createdPost = await Post.create({ text, UserId });
 
+    if (!fileNames) {
+      return createdPost;
+    }
+
     const images = fileNames.map((image) => {
       return { image, PostId: createdPost.id };
     });
