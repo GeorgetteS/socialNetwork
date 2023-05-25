@@ -1,8 +1,8 @@
 import { validationResult } from 'express-validator';
-import userService from '../services/userService.js';
+import authService from '../services/authService.js';
 import ApiError from '../exceptions/apiError.js';
 
-class UserController {
+class AuthController {
   async registration(req, res, next) {
     try {
       const errors = validationResult(req);
@@ -10,7 +10,7 @@ class UserController {
         return next(ApiError.BadRequest('Ошибка при валидации', errors.array()));
       }
       const { email, password, name, surname } = req.body;
-      const userData = await userService.regisration(email, password, name, surname);
+      const userData = await authService.regisration(email, password, name, surname);
 
       res.cookie('refreshToken', userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -26,7 +26,7 @@ class UserController {
   async login(req, res, next) {
     try {
       const { email, password } = req.body;
-      const userData = await userService.login(email, password);
+      const userData = await authService.login(email, password);
 
       res.cookie('refreshToken', userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -42,7 +42,7 @@ class UserController {
   async logout(req, res, next) {
     try {
       const { refreshToken } = req.cookies;
-      const token = await userService.logout(refreshToken);
+      const token = await authService.logout(refreshToken);
 
       res.clearCookie('refreshToken');
 
@@ -55,7 +55,7 @@ class UserController {
   async activate(req, res, next) {
     try {
       const activationLink = req.params.link;
-      await userService.activate(activationLink);
+      await authService.activate(activationLink);
       return res.redirect(process.env.CLIENT_URL);
     } catch (e) {
       next(e);
@@ -66,7 +66,7 @@ class UserController {
     try {
       const { refreshToken } = req.cookies;
 
-      const userData = await userService.refresh(refreshToken);
+      const userData = await authService.refresh(refreshToken);
 
       res.cookie('refreshToken', userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -78,15 +78,6 @@ class UserController {
       next(e);
     }
   }
-
-  async getUsers(req, res, next) {
-    try {
-      const users = await userService.getAllUsers();
-      return res.json(users);
-    } catch (e) {
-      next(e);
-    }
-  }
 }
 
-export default new UserController();
+export default new AuthController();

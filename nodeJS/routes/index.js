@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import userRouter from './userRouter.js';
+import authRouter from './authRouter.js';
 import friendRouter from './friendRouter.js';
 import chatRouter from './chatRouter.js';
 import settingsRouter from './settingsRouter.js';
@@ -8,7 +8,7 @@ import postRouter from './postRouter.js';
 
 const router = new Router();
 
-router.use('/', userRouter);
+router.use('/', authRouter);
 router.use('/friedns', friendRouter);
 router.use('/chats', chatRouter);
 router.use('/settings', settingsRouter);

@@ -6,7 +6,7 @@ import tokenService from './tokenService.js';
 import { UserDto } from '../dtos/userDto.js';
 import ApiError from '../exceptions/apiError.js';
 
-class UserService {
+class AuthService {
   async regisration(email, password, name, surname) {
     const condidate = await User.findOne({ where: { email: email } });
     if (condidate) {
@@ -75,7 +75,6 @@ class UserService {
   }
 
   async refresh(refreshToken) {
-    // console.log(refreshToken);
     if (!refreshToken) {
       throw ApiError.UnoauthorizedError();
     }
@@ -89,22 +88,13 @@ class UserService {
 
     const user = await User.findOne({ where: { id: userData.id } });
 
-    console.log(user, 'uuser');
-
     const userDto = new UserDto(user);
     const tokens = tokenService.generateToken({ ...userDto });
-
-    console.log(userDto, 'userDto');
 
     tokenService.saveToken(userDto.id, tokens.refreshToken);
 
     return { ...tokens, user: userDto };
   }
-
-  async getAllUsers() {
-    const users = await User.findAll();
-    return users;
-  }
 }
 
-export default new UserService();
+export default new AuthService();
