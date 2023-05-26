@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Layout, Menu } from 'antd';
 import { useRouter } from 'next/router';
 
-import styles from '../../styles/Sidebar.module.css';
+// import styles from '../../styles/Sidebar.module.css';
 
 const menu = [
   { name: 'Профиль', path: '/profile' },

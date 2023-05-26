@@ -17,6 +17,16 @@ class PostController {
     }
   }
 
+  async getPostsByUserId(req, res) {
+    try {
+      const { id } = req.params;
+      const posts = await PostService.getPostsByUserId(id);
+      return res.json(posts);
+    } catch (error) {
+      res.status(500).json(error.message);
+    }
+  }
+
   async update(req, res) {
     try {
       const { id, text } = req.body;

@@ -17,6 +17,23 @@ class PostService {
     return { createdPost, postImages };
   }
 
+  async getPostsByUserId(id) {
+    if (!id) {
+      throw new Error('Id не указан');
+    }
+    const posts = await Post.findAll({
+      where: {
+        UserId: id,
+      },
+      include: {
+        model: PostImage,
+        as: 'PostImages',
+      },
+    });
+
+    return posts;
+  }
+
   async update(id, text) {
     if (!id) {
       throw new Error('Id не указан');

@@ -4,6 +4,7 @@ import { upload } from '../middlewares/fileMiddleware.js';
 
 const postRouter = express.Router();
 
+postRouter.get('/:id', PostController.getPostsByUserId);
 postRouter.post('/', upload.fields([{ name: 'postImages' }]), PostController.create);
 postRouter.put('/', PostController.update);
 postRouter.delete('/:id', PostController.delete);

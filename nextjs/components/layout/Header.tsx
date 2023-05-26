@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { FC } from 'react';
 
-import { Checkbox, Layout, Radio } from 'antd';
+import { Layout } from 'antd';
 
 import styles from '../../styles/Header.module.css';
 
