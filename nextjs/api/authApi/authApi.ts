@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { parseCookies, setCookie, destroyCookie } from 'nookies';
-import { HYDRATE } from 'next-redux-wrapper';
+import { setCookie, destroyCookie } from 'nookies';
 
 import { LoginFormDTO, LoginResponseDTO, RegistrstionFormDTO } from '../dto/auth.dto';
 import { setUser, setAuth, reset } from '../../redux/user/userSlice';
@@ -8,9 +7,9 @@ import { BaseQuery } from '../BaseQuery';
 
 const setUserData = (res: LoginResponseDTO, dispatch) => {
   const user = res.user;
-  const token = res.refreshToken;
+  const accessToken = res.accessToken;
 
-  setCookie(null, 'refreshToken', token, {
+  setCookie(null, 'accessToken', accessToken, {
     path: '/',
   });
 
@@ -21,11 +20,7 @@ const setUserData = (res: LoginResponseDTO, dispatch) => {
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery(new BaseQuery()),
-  extractRehydrationInfo(action, { reducerPath }) {
-    if (action.type === HYDRATE) {
-      return action.payload[reducerPath];
-    }
-  },
+
   endpoints: (build) => ({
     login: build.mutation<LoginResponseDTO, Partial<LoginFormDTO>>({
       query: (body) => ({
@@ -36,6 +31,8 @@ export const authApi = createApi({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
+
+          console.log(data);
 
           setUserData(data, dispatch);
         } catch (e) {
@@ -54,6 +51,8 @@ export const authApi = createApi({
         try {
           const { data } = await queryFulfilled;
 
+          console.log(data);
+
           setUserData(data, dispatch);
         } catch (e) {
           console.log(e);
@@ -63,16 +62,22 @@ export const authApi = createApi({
     checkAuth: build.query<LoginResponseDTO, string>({
       query: () => 'refresh',
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
-        const { data } = await queryFulfilled;
+        try {
+          const { data } = await queryFulfilled;
 
-        setUserData(data, dispatch);
+          console.log(data);
+
+          setUserData(data, dispatch);
+        } catch (e) {
+          console.log(e);
+        }
       },
     }),
     logout: build.query<LoginResponseDTO, string>({
       query: () => 'logout',
       async onQueryStarted(_, { dispatch }) {
         try {
-          destroyCookie(null, 'refreshToken', {
+          destroyCookie(null, 'accessToken', {
             path: '/',
           });
 
@@ -83,9 +88,6 @@ export const authApi = createApi({
       },
     }),
   }),
-  refetchOnMountOrArgChange: true,
-  refetchOnReconnect: true,
-  refetchOnFocus: true,
 });
 
 export const { useLoginMutation, useRegistrationMutation, useCheckAuthQuery } = authApi;

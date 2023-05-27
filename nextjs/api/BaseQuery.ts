@@ -12,12 +12,12 @@ type prepareHeaders = (
 
 export class BaseQuery {
   baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  credentials: 'include';
+  credentials = 'include' as RequestCredentials;
   prepareHeaders: prepareHeaders = (headers) => {
-    const { refreshToken } = parseCookies();
+    const { accessToken } = parseCookies();
 
-    if (refreshToken) {
-      headers.set('authorization', `Bearer ${refreshToken}`);
+    if (accessToken) {
+      headers.set('authorization', `Bearer ${accessToken}`);
     }
 
     return headers;
