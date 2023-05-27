@@ -4,6 +4,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import { LoginFormDTO, LoginResponseDTO, RegistrstionFormDTO } from '../dto/auth.dto';
 import { setUser, setAuth, reset } from '../../redux/user/userSlice';
+import { BaseQuery } from '../BaseQuery';
 
 const setUserData = (res: LoginResponseDTO, dispatch) => {
   const user = res.user;
@@ -19,20 +20,7 @@ const setUserData = (res: LoginResponseDTO, dispatch) => {
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
-    credentials: 'include',
-
-    prepareHeaders(headers) {
-      const { refreshToken } = parseCookies();
-
-      if (refreshToken) {
-        headers.set('authorization', `Bearer ${refreshToken}`);
-      }
-
-      return headers;
-    },
-  }),
+  baseQuery: fetchBaseQuery(new BaseQuery()),
   extractRehydrationInfo(action, { reducerPath }) {
     if (action.type === HYDRATE) {
       return action.payload[reducerPath];

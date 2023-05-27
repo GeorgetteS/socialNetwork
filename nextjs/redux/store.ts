@@ -1,11 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
-import userSlice from './user/userSlice';
+import user from './user/userSlice';
 import { authApi } from '../api/authApi/authApi';
 
 export function makeStore() {
   return configureStore({
-    reducer: { userSlice, [authApi.reducerPath]: authApi.reducer },
+    reducer: { user, [authApi.reducerPath]: authApi.reducer },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authApi.middleware),
   });
 }
