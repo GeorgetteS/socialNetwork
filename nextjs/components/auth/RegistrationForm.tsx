@@ -16,7 +16,7 @@ export const RegistrationForm: FC = () => {
         notification.success({
           message: 'Вы зарегистрированы!',
         });
-        router.push('/');
+        router.push('/profile');
       })
       .catch((error) => {
         if (error.status === 401) {

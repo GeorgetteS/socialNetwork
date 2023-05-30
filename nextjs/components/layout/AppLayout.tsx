@@ -10,20 +10,10 @@ export const AppLayout = ({ children }) => {
   return (
     <Layout>
       <Header />
-      {/* <div className="container"> */}
-      <Layout>
+      <Layout className="my_container" style={{ columnGap: '20px' }}>
         <Sidebar />
-        <Content
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: '100vh',
-            flex: '1 1 auto',
-          }}>
-          {children}
-        </Content>
+        <Content>{children}</Content>
       </Layout>
-      {/* </div> */}
     </Layout>
   );
 };

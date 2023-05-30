@@ -65,16 +65,17 @@ export const authApi = createApi({
         try {
           const { data } = await queryFulfilled;
 
-          console.log(data);
-
           setUserData(data, dispatch);
         } catch (e) {
           console.log(e);
         }
       },
     }),
-    logout: build.query<LoginResponseDTO, string>({
-      query: () => 'logout',
+    logout: build.mutation({
+      query: () => ({
+        url: `logout`,
+        method: 'POST',
+      }),
       async onQueryStarted(_, { dispatch }) {
         try {
           destroyCookie(null, 'accessToken', {
@@ -90,4 +91,5 @@ export const authApi = createApi({
   }),
 });
 
-export const { useLoginMutation, useRegistrationMutation, useCheckAuthQuery } = authApi;
+export const { useLoginMutation, useRegistrationMutation, useCheckAuthQuery, useLogoutMutation } =
+  authApi;

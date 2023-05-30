@@ -16,7 +16,7 @@ export const LoginForm: FC = () => {
         notification.success({
           message: 'Вы авторизованы!',
         });
-        router.push('/');
+        router.push('/profile');
       })
       .catch((error) => {
         if (error.status === 401) {
