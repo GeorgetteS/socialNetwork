@@ -28,7 +28,9 @@ class PostService {
       include: {
         model: PostImage,
         as: 'PostImages',
+        attributes: ['image'],
       },
+      order: [['updatedAt', 'DESC']],
     });
 
     return posts;

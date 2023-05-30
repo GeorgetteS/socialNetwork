@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { BaseQuery } from '../BaseQuery';
 import { SendPostMutation } from './sendPostMutation';
+import { GetPostsByUserIdQuery } from './getPostsByUserIdQuery';
 
 export const postApi = createApi({
   reducerPath: 'postApi',
@@ -9,9 +10,11 @@ export const postApi = createApi({
   baseQuery: fetchBaseQuery(new BaseQuery()),
 
   endpoints: (build) => ({
+    getPostsByUserId: build.query(new GetPostsByUserIdQuery()),
+    //@ts-ignore all nice
     setPost: build.mutation(new SendPostMutation()),
-    // getById: build.query(new GetUserByIdQuery())
+    //  deletePost: build.query(new GetPostsByUserIdQuery()),
   }),
 });
 
-export const { useSetPostMutation } = postApi;
+export const { useSetPostMutation, useGetPostsByUserIdQuery } = postApi;

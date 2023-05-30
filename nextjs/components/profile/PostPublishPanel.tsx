@@ -7,14 +7,14 @@ import ImgCrop from 'antd-img-crop';
 import TextArea from 'antd/lib/input/TextArea';
 import type { UploadFile, UploadProps } from 'antd/es/upload/interface';
 
-import styles from '../../styles/PostConstructor.module.css';
+import styles from '../../styles/PostPublishPanel.module.css';
 
 import { userIdSelector } from '../../redux/user/userSelectors';
 import { useSetPostMutation } from '../../api/postApi/postApi';
 
 const allowedExtensions = ['.jpg', '.jpeg', '.png'];
 
-export const PostConstructor: FC = () => {
+export const PostPublishPanel: FC = () => {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [textAreaValue, setTextAreaValue] = useState('');
   const UserId = useSelector(userIdSelector);
@@ -55,6 +55,7 @@ export const PostConstructor: FC = () => {
           message: '!',
         });
         setFileList([]);
+        setTextAreaValue('');
       })
       .catch((error) => {
         if (error.status === 401) {

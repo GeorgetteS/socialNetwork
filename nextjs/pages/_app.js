@@ -9,14 +9,14 @@ import { useCheckAuthQuery } from '../api/authApi/authApi';
 // import theme from '../theme';
 
 const MyApp = ({ Component, pageProps }) => {
-  const { isLoading, error } = useCheckAuthQuery();
+  const { isLoading, error, data } = useCheckAuthQuery();
   const router = useRouter();
 
   useEffect(() => {
     if (error) {
       router.push('/');
     }
-  }, [error]);
+  }, [error, data]);
 
   if (isLoading) {
     return <div>Loading...</div>;

@@ -5,5 +5,5 @@ export class SendPostMutation {
     body: formData,
     formData: true,
   });
-  invalidatesTags: [{ type: 'Posts'; id: 'LIST' }];
+  invalidatesTags = [{ type: 'Posts', id: 'LIST' }];
 }

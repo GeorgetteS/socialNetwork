@@ -1,0 +1,11 @@
+.root{
+	/* margin-bottom: 20px; */
+
+}
+
+
+.root > * :hover{
+	box-shadow: none !important;
+}
+	
+
