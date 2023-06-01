@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import { AppLayout } from '../components/layout/AppLayout';
-import { UserProfile } from '../components/profile/UserProfile';
+import { AppLayout } from '../../components/layout/AppLayout';
+import { UserProfile } from '../../components/profile/UserProfile';
 
 const Profile: FC = () => {
   return (

@@ -2,21 +2,23 @@ import { FC } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Form, Input, notification } from 'antd';
 
-import { RegistrstionFormDTO } from '../../api/dto/auth.dto';
+import { LoginResponseDTO, RegistrstionFormDTO } from '../../api/dto/auth.dto';
 import { useRegistrationMutation } from '../../api/authApi/authApi';
 
 export const RegistrationForm: FC = () => {
   const [registration] = useRegistrationMutation();
+
   const router = useRouter();
 
   const onSubmit = (userData: RegistrstionFormDTO) => {
     registration(userData)
       .unwrap()
-      .then(() => {
+      .then((user: LoginResponseDTO) => {
         notification.success({
           message: 'Вы зарегистрированы!',
         });
-        router.push('/profile');
+        router.push(`/profile/${user.user.id}`);
+        // console.log(UserId);
       })
       .catch((error) => {
         if (error.status === 401) {
