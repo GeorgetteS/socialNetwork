@@ -12,8 +12,8 @@ class PostController {
 
       const post = await PostService.create(text, UserId, fileNames);
       res.json(post);
-    } catch (error) {
-      res.status(500).json(error.message);
+    } catch (e) {
+      res.status(500).json(e.message);
     }
   }
 
@@ -22,8 +22,8 @@ class PostController {
       const { id } = req.params;
       const posts = await PostService.getPostsByUserId(id);
       return res.json(posts);
-    } catch (error) {
-      res.status(500).json(error.message);
+    } catch (e) {
+      res.status(500).json(e.message);
     }
   }
 
@@ -32,8 +32,8 @@ class PostController {
       const { id, text } = req.body;
       const updatedPost = await PostService.update(id, text);
       return res.json(updatedPost);
-    } catch (error) {
-      res.status(500).json(error.message);
+    } catch (e) {
+      res.status(500).json(e.message);
     }
   }
 
@@ -43,8 +43,8 @@ class PostController {
 
       const post = await PostService.delete(id);
       return res.json(post);
-    } catch (error) {
-      res.status(500).json(error.message);
+    } catch (e) {
+      res.status(500).json(e.message);
     }
   }
 
@@ -54,8 +54,8 @@ class PostController {
 
       const comment = await PostService.createComment(PostId, UserId, text);
       return res.json(comment);
-    } catch (error) {
-      res.status(500).json(error.message);
+    } catch (e) {
+      res.status(500).json(e.message);
     }
   }
 
@@ -64,8 +64,8 @@ class PostController {
       const { id, text } = req.body;
       const comment = await PostService.updateComment(id, text);
       return res.json(comment);
-    } catch (error) {
-      res.status(500).json(error.message);
+    } catch (e) {
+      res.status(500).json(e.message);
     }
   }
 
@@ -75,8 +75,8 @@ class PostController {
 
       const comment = await PostService.deleteComment(id);
       return res.json(comment);
-    } catch (error) {
-      res.status(500).json(error.message);
+    } catch (e) {
+      res.status(500).json(e.message);
     }
   }
 
@@ -85,8 +85,8 @@ class PostController {
       const { UserId, PostId } = req.body;
       const like = await PostService.setLike(UserId, PostId);
       return res.json(like);
-    } catch (error) {
-      res.status(500).json(error.message);
+    } catch (e) {
+      res.status(500).json(e.message);
     }
   }
 
@@ -96,8 +96,8 @@ class PostController {
 
       const like = await PostService.deleteLike(id);
       return res.json(like);
-    } catch (error) {
-      res.status(500).json(error.message);
+    } catch (e) {
+      res.status(500).json(e.message);
     }
   }
 }

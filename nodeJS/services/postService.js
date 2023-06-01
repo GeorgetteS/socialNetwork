@@ -1,4 +1,4 @@
-import { Post, PostComment, PostImage, PostLike, User } from '../models/models.js';
+import { Post, PostComment, PostImage, PostLike } from '../models/models.js';
 
 class PostService {
   async create(text, UserId, fileNames) {
