@@ -3,6 +3,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import user from './user/userSlice';
 import { authApi } from '../api/authApi/authApi';
 import { postApi } from '../api/postApi/postApi';
+import { userApi } from '../api/userApi/userApi';
 
 export function makeStore() {
   return configureStore({
@@ -10,9 +11,13 @@ export function makeStore() {
       user,
       [authApi.reducerPath]: authApi.reducer,
       [postApi.reducerPath]: postApi.reducer,
+      [userApi.reducerPath]: userApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(authApi.middleware).concat(postApi.middleware),
+      getDefaultMiddleware()
+        .concat(authApi.middleware)
+        .concat(postApi.middleware)
+        .concat(userApi.middleware),
   });
 }
 

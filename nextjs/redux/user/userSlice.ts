@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { userDTO } from '../../api/dto/user.dto';
+import { userAuthDTO } from '../../api/dto/user.dto';
 
 const initialState = {
-  user: {} as userDTO,
+  user: {} as userAuthDTO,
   isAuth: false,
 };
 
