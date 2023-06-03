@@ -8,7 +8,7 @@ const { Content } = Layout;
 
 export const AppLayout = ({ children }) => {
   return (
-    <Layout>
+    <Layout style={{ minHeight: '100vh' }}>
       <Header />
       <Layout className="my_container" style={{ columnGap: '20px' }}>
         <Sidebar />

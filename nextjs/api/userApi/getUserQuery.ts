@@ -6,4 +6,6 @@ export class GetUserQuery {
   transformResponse = (response) => {
     return new userConstructor(response).getField();
   };
+
+  providesTags = () => [{ type: 'User' }];
 }

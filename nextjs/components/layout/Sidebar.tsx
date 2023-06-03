@@ -5,8 +5,6 @@ import { useSelector } from 'react-redux';
 
 import { userIdSelector } from '../../redux/user/userSelectors';
 
-// import styles from '../../styles/Sidebar.module.css';
-
 const menu = [
   { name: 'Профиль', path: 'profile' },
   { name: 'Чаты', path: 'chats' },

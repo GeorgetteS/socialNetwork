@@ -1,30 +1,30 @@
 import { Button, Card } from 'antd';
 import { FC } from 'react';
+import { useRouter } from 'next/router';
 
 import { AvatarUi } from '../../UI/AvatarUi';
 
 import { userDTO } from '../../api/userApi/userConstructor';
 
-interface IUserInfo {
-  userData: userDTO;
-  isMine: boolean;
-}
+type IUserInfo = userDTO & { isMine: boolean };
 
-export const UserInfo: FC<IUserInfo> = ({ userData, isMine }) => {
-  const edit = isMine ? <Button>Редактировать профиль</Button> : null;
+export const UserInfo: FC<IUserInfo> = ({ fullname, isMine, about, avatar }) => {
+  const router = useRouter();
+
+  const goToSettings = () => {
+    router.push('/settings');
+  };
+
+  const edit = isMine ? <Button onClick={goToSettings}>Редактировать профиль</Button> : null;
+
+  console.log(isMine);
 
   return (
     <Card
-      bodyStyle={{ display: 'none' }}
+      bodyStyle={{ display: about ? 'block' : 'none' }}
       extra={edit}
-      title={
-        <AvatarUi
-          size={48}
-          fullname={userData.fullname}
-          avatar={userData.avatar}
-          text={userData.about}
-        />
-      }
-    />
+      title={<AvatarUi size={54} title={fullname} avatar={avatar} />}>
+      {about}
+    </Card>
   );
 };

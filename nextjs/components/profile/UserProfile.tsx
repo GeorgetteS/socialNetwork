@@ -17,26 +17,30 @@ export const UserProfile: FC = () => {
   const currentUser = router.query.id;
   const UserId = useSelector(userIdSelector);
 
-  const { data: postData, isLoading: isPostsQueryLoading } = useGetPostsByUserIdQuery(currentUser);
+  const { data: postData } = useGetPostsByUserIdQuery(currentUser);
   const { data: userData, isLoading: isUserQueryLoading } = useGetUserQuery(currentUser);
 
-  const isMine = currentUser === UserId;
+  const isMine = +currentUser === +UserId;
 
   const userInfo = isUserQueryLoading ? (
     <Skeleton avatar paragraph={{ rows: 0 }} />
   ) : (
-    <UserInfo userData={userData} isMine={isMine} />
+    <UserInfo {...userData} isMine={isMine} />
   );
 
-  const posts = isPostsQueryLoading ? (
-    <Spin />
-  ) : (
+  const posts = postData ? (
     postData.map((post: postDTO) => {
       return <Post key={post.id} {...post} {...userData} id={post.id} />;
     })
+  ) : (
+    <Spin />
   );
 
   return (
-    <UserProfileLayout userInfo={userInfo} postPublishPanel={<PostPublishPanel />} posts={posts} />
+    <UserProfileLayout
+      userInfo={userInfo}
+      postPublishPanel={isMine && <PostPublishPanel />}
+      posts={posts}
+    />
   );
 };

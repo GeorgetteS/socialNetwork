@@ -11,8 +11,7 @@ import styles from '../../styles/PostPublishPanel.module.css';
 
 import { userIdSelector } from '../../redux/user/userSelectors';
 import { useSetPostMutation } from '../../api/postApi/postApi';
-
-const allowedExtensions = ['.jpg', '.jpeg', '.png'];
+import { allowedExtensionsImg } from '../constants';
 
 export const PostPublishPanel: FC = () => {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
@@ -25,11 +24,11 @@ export const PostPublishPanel: FC = () => {
 
   const checkExtension = (file) => {
     const extension = file.type.split('/').pop();
-    if (allowedExtensions.includes('.' + extension)) {
+    if (allowedExtensionsImg.includes('.' + extension)) {
       return true;
     }
 
-    message.error('Неверный формат файла! Допустимые форматы: ' + allowedExtensions.join(', '));
+    message.error('Неверный формат файла! Допустимые форматы: ' + allowedExtensionsImg.join(', '));
 
     return Upload.LIST_IGNORE;
   };
@@ -86,7 +85,7 @@ export const PostPublishPanel: FC = () => {
             onChange={onChange}
             listType="picture-card"
             showUploadList={{ showPreviewIcon: false }}
-            accept={allowedExtensions.join(', ')}
+            accept={allowedExtensionsImg.join(', ')}
             maxCount={3}
             beforeUpload={checkExtension}>
             <Button>Загрузить фото</Button>

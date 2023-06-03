@@ -6,16 +6,22 @@ import styles from '../styles/AvatarUi.module.css';
 interface IAvatarUi {
   avatar: string;
   size?: number;
-  fullname: string;
-  text: string;
+  title: string;
+  text?: string;
+  cursorPointer?: boolean;
 }
 
-export const AvatarUi: FC<IAvatarUi> = ({ avatar, size, fullname, text }) => {
+export const AvatarUi: FC<IAvatarUi> = ({ avatar, size, title, text, cursorPointer }) => {
   return (
     <div className={styles.row}>
-      <Avatar shape="circle" size={size || 32} src={avatar || 'noAvatar.svg'} />
+      <Avatar
+        style={{ cursor: cursorPointer ? 'pointer' : 'auto' }}
+        shape="circle"
+        size={size || 32}
+        src={avatar || 'noAvatar.svg'}
+      />
       <div className={styles.column}>
-        <div className="">{fullname}</div>
+        <div>{title}</div>
         <div className={styles.text}>{text}</div>
       </div>
     </div>

@@ -23,7 +23,8 @@ export const Post: FC<TPost> = ({ text = '', images = [], avatar, fullname, date
       className={styles.root}
       title={
         <AvatarUi
-          fullname={fullname}
+          title={fullname}
+          size={48}
           text={isUpdated ? `обновлен ${date}` : date}
           avatar={avatar}
         />

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { userAuthDTO } from '../../api/dto/user.dto';
+import { userAuthDTO } from '../../api/dto/userAuth.dto';
 
 const initialState = {
   user: {} as userAuthDTO,

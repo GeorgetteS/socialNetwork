@@ -1,4 +1,4 @@
-import { userDTO } from './user.dto';
+import { userDTO } from './userAuth.dto';
 
 export interface LoginFormDTO {
   email: string;
