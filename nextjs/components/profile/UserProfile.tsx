@@ -9,7 +9,7 @@ import { useGetPostsByUserIdQuery } from '../../api/postApi/postApi';
 import { userIdSelector } from '../../redux/user/userSelectors';
 import { UserInfo } from './UserInfo';
 import { useGetUserQuery } from '../../api/userApi/userApi';
-import { UserProfileLayout } from './UserProfileLayout';
+import { UserProfileView } from './UserProfileView';
 import { postDTO } from '../../api/postApi/postConstructor';
 
 export const UserProfile: FC = () => {
@@ -17,8 +17,12 @@ export const UserProfile: FC = () => {
   const currentUser = router.query.id;
   const UserId = useSelector(userIdSelector);
 
-  const { data: postData } = useGetPostsByUserIdQuery(currentUser);
-  const { data: userData, isLoading: isUserQueryLoading } = useGetUserQuery(currentUser);
+  const skip = {
+    skip: UserId === undefined,
+  };
+
+  const { data: postData } = useGetPostsByUserIdQuery(currentUser, skip);
+  const { data: userData, isLoading: isUserQueryLoading } = useGetUserQuery(currentUser, skip);
 
   const isMine = +currentUser === +UserId;
 
@@ -37,7 +41,7 @@ export const UserProfile: FC = () => {
   );
 
   return (
-    <UserProfileLayout
+    <UserProfileView
       userInfo={userInfo}
       postPublishPanel={isMine && <PostPublishPanel />}
       posts={posts}

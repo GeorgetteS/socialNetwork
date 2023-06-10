@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import { FC } from 'react';
 
-import { Button, Layout } from 'antd';
+import { Button } from 'antd';
 
-import styles from '../../styles/Header.module.css';
 import { useLogoutMutation } from '../../api/authApi/authApi';
+
+import { HeaderView } from './HeaderView';
+import { InputSelectUser } from '../form/InputSelectUser/InputSelectUser';
 
 export const Header: FC = () => {
   const [logout] = useLogoutMutation();
@@ -23,13 +24,8 @@ export const Header: FC = () => {
   };
 
   return (
-    <Layout.Header className={styles.root}>
-      <div className="my_container">
-        <div className={styles.row}>
-          <Image src={'logo.svg'} width={40} height={40} alt="logo" />
-          <Button onClick={onLogout}>Выйти</Button>
-        </div>
-      </div>
-    </Layout.Header>
+    <HeaderView rightPlace={<Button onClick={onLogout}>Выйти</Button>}>
+      <InputSelectUser label="Найти друзей" />
+    </HeaderView>
   );
 };

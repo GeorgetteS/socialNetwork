@@ -20,7 +20,7 @@ export const Sidebar: FC = () => {
 
   const linkTo = (path) => {
     if (path === 'profile') {
-      router.push(path + '/' + UserId);
+      router.push('/' + path + '/' + UserId);
     } else {
       router.push('/' + path);
     }

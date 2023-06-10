@@ -18,7 +18,7 @@ const User = sequelize.define(
       allowNull: false,
     },
     img: {
-      type: DataTypes.STRING(60),
+      type: DataTypes.STRING,
     },
     about: {
       type: DataTypes.STRING,
@@ -54,9 +54,12 @@ const Chat = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    isPrivat: {
+    isPrivate: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+    },
+    name: {
+      type: DataTypes.STRING,
     },
   },
   {
@@ -77,6 +80,20 @@ const UserChat = sequelize.define(
   {
     tableName: 'users_chats',
     timestamps: true,
+    validate: {
+      async checkUsersExist() {
+        if (!this.UserId || !this.ChatId) {
+          throw new Error('UserId and ChatId are required.');
+        }
+        const [user, chat] = await Promise.all([
+          User.findByPk(this.UserId),
+          Chat.findByPk(this.ChatId),
+        ]);
+        if (!user || !chat) {
+          throw new Error('Both UserId and ChatId must refer to existing records.');
+        }
+      },
+    },
   },
 );
 

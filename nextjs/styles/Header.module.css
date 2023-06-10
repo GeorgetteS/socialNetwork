@@ -1,7 +1,6 @@
 
 
 .root{
-	/* background: @primary-color; */
 	display: flex;
 	align-items: center;
 	background: #fff;
@@ -12,5 +11,17 @@
 .row{
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	column-gap: 20px;
 }
+
+.center{
+	flex: 1 1 auto;
+}
+
+.input{
+	width: 270px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+

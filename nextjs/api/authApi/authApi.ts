@@ -32,8 +32,6 @@ export const authApi = createApi({
         try {
           const { data } = await queryFulfilled;
 
-          console.log(data);
-
           setUserData(data, dispatch);
         } catch (e) {
           console.log(e);
@@ -50,8 +48,6 @@ export const authApi = createApi({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-
-          console.log(data);
 
           setUserData(data, dispatch);
         } catch (e) {

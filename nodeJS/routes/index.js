@@ -10,7 +10,7 @@ const router = new Router();
 
 router.use('/', authRouter);
 router.use('/friedns', authMiddleware, friendRouter);
-router.use('/chats', authMiddleware, chatRouter);
+router.use('/chats', chatRouter);
 router.use('/posts', authMiddleware, postRouter);
 router.use('/users', userRouter);
 

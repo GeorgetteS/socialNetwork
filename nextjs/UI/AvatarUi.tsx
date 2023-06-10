@@ -4,21 +4,21 @@ import { Avatar } from 'antd';
 import styles from '../styles/AvatarUi.module.css';
 
 interface IAvatarUi {
-  avatar: string;
+  avatar?: string;
   size?: number;
   title: string;
   text?: string;
   cursorPointer?: boolean;
 }
 
-export const AvatarUi: FC<IAvatarUi> = ({ avatar, size, title, text, cursorPointer }) => {
+export const AvatarUi: FC<IAvatarUi> = ({ avatar = '', size, title, text, cursorPointer }) => {
   return (
     <div className={styles.row}>
       <Avatar
         style={{ cursor: cursorPointer ? 'pointer' : 'auto' }}
         shape="circle"
         size={size || 32}
-        src={avatar || 'noAvatar.svg'}
+        src={avatar || '/noAvatar.svg'}
       />
       <div className={styles.column}>
         <div>{title}</div>

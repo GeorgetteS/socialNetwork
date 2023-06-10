@@ -1,15 +1,15 @@
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { FC } from 'react';
 import { Button, Form, Input, notification } from 'antd';
 
 import { LoginFormDTO, LoginResponseDTO } from '../../api/dto/auth.dto';
 import { useLoginMutation } from '../../api/authApi/authApi';
-import { userIdSelector } from '../../redux/user/userSelectors';
+// import { userIdSelector } from '../../redux/user/userSelectors';
 
 export const LoginForm: FC = () => {
   const [login] = useLoginMutation();
-  const UserId = useSelector(userIdSelector);
+  // const UserId = useSelector(userIdSelector);
   const router = useRouter();
 
   const onSubmit = (userData: LoginFormDTO) => {
@@ -20,7 +20,6 @@ export const LoginForm: FC = () => {
           message: 'Вы авторизованы!',
         });
         router.push(`/profile/${user.user.id}`);
-        console.log(UserId);
       })
       .catch((error) => {
         if (error.status === 401) {

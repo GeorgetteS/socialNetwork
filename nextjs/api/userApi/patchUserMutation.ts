@@ -1,6 +1,6 @@
 export class PatchUserMutation {
   query = (formData) => ({
-    url: `users/patch`,
+    url: `users`,
     method: 'PATCH',
     body: formData,
     formData: true,
