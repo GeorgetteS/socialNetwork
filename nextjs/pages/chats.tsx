@@ -1,13 +1,14 @@
 import { FC } from 'react';
 
 import { AppLayout } from '../components/layout/AppLayout';
+import { Chats } from '../components/chats/Chats';
 
-const Chats: FC = () => {
+const ChatsPage: FC = () => {
   return (
     <AppLayout>
-      <h1>Hello World!</h1>
+      <Chats />
     </AppLayout>
   );
 };
 
-export default Chats;
+export default ChatsPage;
