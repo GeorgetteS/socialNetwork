@@ -1,4 +1,4 @@
-import { DataTypes, BOOLEAN } from 'sequelize';
+import { DataTypes, BOOLEAN, Op } from 'sequelize';
 import sequelize from '../db.js';
 
 const User = sequelize.define(
@@ -115,6 +115,19 @@ const Message = sequelize.define(
     timestamps: true,
     createdAt: true,
     updatedAt: true,
+    validate: {
+      async checkUsersExist() {
+        if (!this.UserId || !this.ChatId) {
+          throw new Error('UserId and ChatId are required.');
+        }
+        const userChat = await UserChat.findOne({
+          where: { [Op.and]: [{ ChatId: this.ChatId }, { UserId: this.UserId }] },
+        });
+        if (!userChat) {
+          throw new Error('Пользователя нет в чате!.');
+        }
+      },
+    },
   },
 );
 
@@ -247,12 +260,12 @@ Chat.belongsToMany(User, { through: UserChat });
 User.belongsToMany(Chat, { through: UserChat });
 
 User.hasOne(Message);
-Message.belongsTo(Message);
+Message.belongsTo(User);
 
 Chat.hasOne(Message);
 Message.belongsTo(Chat);
 
-User.belongsToMany(User, { through: Friend, as: 'friends', foreignKey: 'userId' });
+User.belongsToMany(User, { through: Friend, as: 'friends', foreignKey: 'UserId' });
 
 User.hasMany(Post);
 Post.belongsTo(User);

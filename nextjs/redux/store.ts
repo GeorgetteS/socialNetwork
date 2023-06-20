@@ -4,6 +4,7 @@ import user from './user/userSlice';
 import { authApi } from '../api/authApi/authApi';
 import { postApi } from '../api/postApi/postApi';
 import { userApi } from '../api/userApi/userApi';
+import { chatApi } from '../api/chatApi/chatApi';
 
 export function makeStore() {
   return configureStore({
@@ -12,12 +13,14 @@ export function makeStore() {
       [authApi.reducerPath]: authApi.reducer,
       [postApi.reducerPath]: postApi.reducer,
       [userApi.reducerPath]: userApi.reducer,
+      [chatApi.reducerPath]: chatApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware()
         .concat(authApi.middleware)
         .concat(postApi.middleware)
-        .concat(userApi.middleware),
+        .concat(userApi.middleware)
+        .concat(chatApi.middleware),
   });
 }
 

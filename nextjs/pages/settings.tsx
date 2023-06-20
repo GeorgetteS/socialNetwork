@@ -1,11 +1,12 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
+import { Skeleton } from 'antd';
+
 import { AppLayout } from '../components/layout/AppLayout';
 import { ProfileEditor } from '../components/settings/ProfileEditor';
 import { useGetUserQuery } from '../api/userApi/userApi';
 import { userIdSelector } from '../redux/user/userSelectors';
-import { Skeleton } from 'antd';
 
 const Settings: FC = () => {
   const UserId = useSelector(userIdSelector);

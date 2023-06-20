@@ -3,7 +3,7 @@ import { Avatar } from 'antd';
 
 import styles from '../styles/AvatarUi.module.css';
 
-interface IAvatarUi {
+export interface IAvatarUi {
   avatar?: string;
   size?: number;
   title: string;
@@ -18,11 +18,12 @@ export const AvatarUi: FC<IAvatarUi> = ({ avatar = '', size, title, text, cursor
         style={{ cursor: cursorPointer ? 'pointer' : 'auto' }}
         shape="circle"
         size={size || 32}
+        className={styles.avatar}
         src={avatar || '/noAvatar.svg'}
       />
       <div className={styles.column}>
-        <div>{title}</div>
-        <div className={styles.text}>{text}</div>
+        <div className={styles.title}>{title}</div>
+        {text && <span className={styles.text}>{text}</span>}
       </div>
     </div>
   );

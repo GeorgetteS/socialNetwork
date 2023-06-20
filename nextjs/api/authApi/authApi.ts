@@ -4,6 +4,7 @@ import { setCookie, destroyCookie } from 'nookies';
 import { LoginFormDTO, LoginResponseDTO, RegistrstionFormDTO } from '../dto/auth.dto';
 import { setUser, setAuth, reset } from '../../redux/user/userSlice';
 import { BaseQuery } from '../BaseQuery';
+import { socket } from '../../socket';
 
 const setUserData = (res: LoginResponseDTO, dispatch) => {
   const user = res.user;
@@ -33,6 +34,7 @@ export const authApi = createApi({
           const { data } = await queryFulfilled;
 
           setUserData(data, dispatch);
+          socket.connect();
         } catch (e) {
           console.log(e);
         }
@@ -50,6 +52,8 @@ export const authApi = createApi({
           const { data } = await queryFulfilled;
 
           setUserData(data, dispatch);
+
+          socket.connect();
         } catch (e) {
           console.log(e);
         }
@@ -62,6 +66,8 @@ export const authApi = createApi({
           const { data } = await queryFulfilled;
 
           setUserData(data, dispatch);
+
+          socket.connect();
         } catch (e) {
           console.log(e);
         }
@@ -79,6 +85,7 @@ export const authApi = createApi({
           });
 
           dispatch(reset());
+          socket.disconnect();
         } catch (e) {
           console.log(e);
         }

@@ -6,7 +6,8 @@ import { ConfigProvider } from 'antd';
 
 import { store } from '../redux/store';
 import { useCheckAuthQuery } from '../api/authApi/authApi';
-// import theme from '../theme';
+
+import { socket } from '../socket';
 
 const MyApp = ({ Component, pageProps }) => {
   const { isLoading, error, data } = useCheckAuthQuery();
@@ -16,7 +17,17 @@ const MyApp = ({ Component, pageProps }) => {
     if (error) {
       router.push('/');
     }
-  }, [error, data]);
+  }, [error, data, router]);
+
+  useEffect(() => {
+    socket.on('error', (message) => {
+      console.error('Socket.IO Error:', message);
+    });
+    return () => {
+      socket.off('error');
+      socket.disconnect();
+    };
+  }, []);
 
   if (isLoading) {
     return <div>Loading...</div>;

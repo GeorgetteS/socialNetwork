@@ -1,4 +1,5 @@
 import express from 'express';
+import http from 'http';
 
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -6,13 +7,17 @@ import cookieParser from 'cookie-parser';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
-
 import sequelize from './db.js';
-import router from './routes/index.js';
 import * as models from './models/models.js';
+import router from './routes/index.js';
 import errorMiddleware from './middlewares/errorMiddleware.js';
+import { initSokets } from './websockets/websockets.js';
 
 const app = express();
+
+const server = http.Server(app);
+
+initSokets(server);
 
 dotenv.config();
 
@@ -39,7 +44,7 @@ const start = async () => {
     await sequelize.authenticate();
     // await sequelize.sync({ force: true });
 
-    app.listen(PORT, () => console.log('Запущен на ', PORT));
+    server.listen(PORT, () => console.log('Запущен на ', PORT));
     console.log();
   } catch (error) {
     console.error('Unable to connect to the database:', error);

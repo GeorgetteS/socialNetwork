@@ -1,6 +1,6 @@
 .row{
 	display: flex;
-	/* justify-content: space-between; */
+	max-width: 100%;
 	column-gap: 10px;
 	align-items: center;
 	padding: 5px 0;
@@ -9,10 +9,24 @@
 .column{
 	display: flex;
 	flex-direction: column;
+	/* justify-content: space-between; */
+	row-gap: 3px;
+}
+
+.title{
+	font-weight: 500;
+	font-size: 16px;
+	
 }
 
 .text{
 	font-weight: normal;
 	font-size: 14px;
+	
 }
+
+.avatar{
+	flex: 0 0 auto
+}
+
 

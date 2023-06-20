@@ -18,7 +18,6 @@ export const RegistrationForm: FC = () => {
           message: 'Вы зарегистрированы!',
         });
         router.push(`/profile/${user.user.id}`);
-        // console.log(UserId);
       })
       .catch((error) => {
         if (error.status === 401) {

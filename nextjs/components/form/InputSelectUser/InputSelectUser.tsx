@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { Select, Skeleton, Spin } from 'antd';
 
@@ -16,9 +17,16 @@ export const InputSelectUser = ({ ...props }: InputSelectUserProps) => {
   const [options, setOptions] = useState<userDTO[]>([]);
   const [loadList, listQuery] = useLazyGetUserListQuery();
 
+  const router = useRouter();
+
   const { data: chunkData, isLoading, isFetching } = listQuery;
 
   const { userList: chunkOptions = [], meta } = chunkData || { listOptions: [] };
+
+  const onSelect = (option) => {
+    router.push(`/profile/${option}`);
+    (document.activeElement as HTMLElement).blur();
+  };
 
   const isNeedMoreChunk = () => {
     const isOnLastPage = meta?.page === meta?.totalPages;
@@ -61,7 +69,7 @@ export const InputSelectUser = ({ ...props }: InputSelectUserProps) => {
   }
 
   return (
-    <InputSelect {...props} onSearch={handleSearch}>
+    <InputSelect {...props} onSearch={handleSearch} value="" onSelect={onSelect}>
       {options.map((option) => {
         return (
           <Select.Option key={option.id}>

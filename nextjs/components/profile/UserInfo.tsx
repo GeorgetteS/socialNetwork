@@ -17,8 +17,6 @@ export const UserInfo: FC<IUserInfo> = ({ fullname, isMine, about, avatar }) => 
 
   const edit = isMine ? <Button onClick={goToSettings}>Редактировать профиль</Button> : null;
 
-  // console.log(isMine);
-
   return (
     <Card
       bodyStyle={{ display: about ? 'block' : 'none' }}

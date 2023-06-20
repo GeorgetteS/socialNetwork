@@ -32,7 +32,7 @@
 }
 
 .chats_wrapper  > * {
-	padding: 5px 10px;
+	padding: 0px 5px;
 	border-bottom:solid 0.5px rgba(0, 0, 0, 0.2);
 	transition: background 0.15s ease;
 	cursor: pointer;
@@ -81,15 +81,32 @@
 		padding: 0 10px;
 
 		display: flex;
-		flex-direction: column-reverse;
-
+		flex-direction: column;
+		row-gap: 5px;
+		
 		overflow: auto;
 	}
+
+
+
+	.chat_messages_container :first-child{
+		margin-top: auto;
+	}
+
 
 .chat_input{
 	display: flex;
 	justify-items: space-between;
+	align-items: center;
 	column-gap: 10px;
 
 	padding: 10px;
+}
+
+.chat_input input{
+	flex: 0 1 93.5%;
+}
+
+.chat_input button{
+	height: 100%;
 }
