@@ -4,12 +4,18 @@ import Image from 'next/image';
 
 import styles from '../../styles/Post.module.css';
 import { AvatarUi } from '../../UI/AvatarUi';
-import { userDTO } from '../../api/userApi/userConstructor';
 import { postDTO } from '../../api/postApi/postConstructor';
 
-type TPost = postDTO & Omit<userDTO, 'id' | 'about'>;
+type TPost = postDTO;
 
-export const Post: FC<TPost> = ({ text = '', images = [], avatar, fullname, date, isUpdated }) => {
+export const Post: FC<TPost> = ({
+  text = '',
+  images = [],
+  userAvatar,
+  userName,
+  date,
+  isUpdated,
+}) => {
   const PostCarousel = images.length ? (
     <Carousel dotPosition="bottom">
       {images.map((imageUrl, i) => {
@@ -23,10 +29,10 @@ export const Post: FC<TPost> = ({ text = '', images = [], avatar, fullname, date
       className={styles.root}
       title={
         <AvatarUi
-          title={fullname}
+          title={userName}
           size={48}
           text={isUpdated ? `обновлен ${date}` : date}
-          avatar={avatar}
+          avatar={userAvatar}
         />
       }>
       {text && <Card.Grid style={{ width: '100%' }}>{text}</Card.Grid>}

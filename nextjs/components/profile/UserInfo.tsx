@@ -1,15 +1,15 @@
-import { Button, Card } from 'antd';
-import { FC } from 'react';
 import { useRouter } from 'next/router';
+import { Button, Card, Skeleton } from 'antd';
 
 import { AvatarUi } from '../../UI/AvatarUi';
 
-import { userDTO } from '../../api/userApi/userConstructor';
+import { useGetUserQuery } from '../../api/userApi/userApi';
+import { IUserProfileInfo } from './UserProfile';
 
-type IUserInfo = userDTO & { isMine: boolean };
-
-export const UserInfo: FC<IUserInfo> = ({ fullname, isMine, about, avatar }) => {
+export const UserInfo = ({ isMine, currentUser, skip }: IUserProfileInfo) => {
   const router = useRouter();
+
+  const { data: userData, isLoading: isUserQueryLoading } = useGetUserQuery(currentUser, skip);
 
   const goToSettings = () => {
     router.push('/settings');
@@ -17,12 +17,16 @@ export const UserInfo: FC<IUserInfo> = ({ fullname, isMine, about, avatar }) => 
 
   const edit = isMine ? <Button onClick={goToSettings}>Редактировать профиль</Button> : null;
 
+  if (isUserQueryLoading) {
+    return <Skeleton avatar paragraph={{ rows: 0 }} />;
+  }
+
   return (
     <Card
-      bodyStyle={{ display: about ? 'block' : 'none' }}
+      bodyStyle={{ display: userData?.about ? 'block' : 'none' }}
       extra={edit}
-      title={<AvatarUi size={54} title={fullname} avatar={avatar} />}>
-      {about}
+      title={<AvatarUi size={54} title={userData?.fullname} avatar={userData?.avatar} />}>
+      {userData?.about}
     </Card>
   );
 };

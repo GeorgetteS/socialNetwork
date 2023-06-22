@@ -4,6 +4,7 @@ import styles from '../../styles/ChatItem.module.css';
 
 type onClickChat = {
   id: number;
+  // eslint-disable-next-line no-unused-vars
   onClickChatItem: (id: number) => void;
 };
 

@@ -1,7 +1,13 @@
-import { FC } from 'react';
+import { ReactNode } from 'react';
 import { Space } from 'antd';
 
-export const UserProfileView: FC = ({ userInfo, postPublishPanel, posts }) => {
+interface IUserProfileView {
+  userInfo: ReactNode;
+  postPublishPanel?: ReactNode;
+  posts: ReactNode;
+}
+
+export const UserProfileView = ({ userInfo, postPublishPanel, posts }: IUserProfileView) => {
   return (
     <Space direction="vertical" size="middle" style={{ display: 'flex', maxWidth: 550 }}>
       {userInfo}

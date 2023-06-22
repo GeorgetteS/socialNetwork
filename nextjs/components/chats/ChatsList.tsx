@@ -1,23 +1,19 @@
-import { useSelector } from 'react-redux';
 import { Spin } from 'antd';
 
-import { userIdSelector } from '../../redux/user/userSelectors';
 import { useGetChatsByUserIdQuery } from '../../api/chatApi/chatApi';
 import { ChatItem } from './ChatItem';
 import { socket } from '../../socket';
+import { useGetQuerySkip } from '../../hook/useGetQuerySkip';
 
 export const ChatsList = ({
   currentChat,
   setCurrentChat,
 }: {
   currentChat: number;
+  // eslint-disable-next-line no-unused-vars
   setCurrentChat: (ChatId: number) => void;
 }) => {
-  const UserId = useSelector(userIdSelector);
-
-  const skip = {
-    skip: UserId === undefined,
-  };
+  const { UserId, skip } = useGetQuerySkip();
 
   const { data: chatsData, isLoading } = useGetChatsByUserIdQuery(UserId, skip);
 

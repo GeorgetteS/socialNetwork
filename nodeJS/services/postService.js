@@ -1,4 +1,4 @@
-import { Post, PostComment, PostImage, PostLike } from '../models/models.js';
+import { Post, PostComment, PostImage, PostLike, User } from '../models/models.js';
 
 class PostService {
   async create(text, UserId, fileNames) {
@@ -25,11 +25,14 @@ class PostService {
       where: {
         UserId: id,
       },
-      include: {
-        model: PostImage,
-        as: 'PostImages',
-        attributes: ['image'],
-      },
+      include: [
+        {
+          model: PostImage,
+          as: 'PostImages',
+          attributes: ['image'],
+        },
+        { model: User },
+      ],
       order: [['updatedAt', 'DESC']],
     });
 
