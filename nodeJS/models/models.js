@@ -214,7 +214,9 @@ const Friend = sequelize.define(
       primaryKey: true,
     },
     status: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.ENUM('pending', 'accepted', 'rejected'),
+      allowNull: false,
+      defaultValue: 'pending',
     },
     // userId: {
     //   type: DataTypes.INTEGER,
@@ -265,7 +267,7 @@ Message.belongsTo(User);
 Chat.hasOne(Message);
 Message.belongsTo(Chat);
 
-User.belongsToMany(User, { through: Friend, as: 'friends', foreignKey: 'UserId' });
+User.belongsToMany(User, { through: Friend, as: 'Friends', foreignKey: 'UserId' });
 
 User.hasMany(Post);
 Post.belongsTo(User);
@@ -277,9 +279,9 @@ Post.hasMany(PostComment);
 PostComment.belongsTo(Post);
 
 User.hasMany(PostComment);
-PostComment.hasOne(User);
+PostComment.belongsTo(User);
 
 User.belongsToMany(Post, { through: PostLike, as: 'liked_posts' });
 Post.belongsToMany(User, { through: PostLike, as: 'liked_by_users' });
 
-export { UserChat, Chat, Message, Post, Token, User, PostComment, PostImage, PostLike };
+export { UserChat, Chat, Message, Post, Token, User, Friend, PostComment, PostImage, PostLike };
