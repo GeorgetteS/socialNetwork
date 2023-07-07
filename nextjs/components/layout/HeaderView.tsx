@@ -1,10 +1,9 @@
 import { Layout } from 'antd';
 import Image from 'next/image';
-import { FC } from 'react';
 
 import styles from '../../styles/Header.module.css';
 
-export const HeaderView: FC = ({ children, rightPlace }) => {
+export const HeaderView = ({ children, rightPlace }) => {
   return (
     <Layout.Header className={styles.root}>
       <div className="my_container">
