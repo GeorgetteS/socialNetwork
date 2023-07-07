@@ -16,7 +16,7 @@ export const Sidebar: FC = () => {
   const router = useRouter();
   const UserId = useSelector(userIdSelector);
 
-  const path = router.pathname.split('/')[1];
+  // const path = router.pathname.split('/')[1];
 
   const linkTo = (path) => {
     if (path === 'profile') {
@@ -28,7 +28,6 @@ export const Sidebar: FC = () => {
   return (
     <Layout.Sider theme="light">
       <Menu
-        selectedKeys={[path]}
         items={menu.map((item) => ({
           key: item.path,
           onClick: () => linkTo(item.path),

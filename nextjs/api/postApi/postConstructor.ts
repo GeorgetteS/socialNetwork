@@ -8,7 +8,7 @@ export interface postDTO {
   isUpdated: boolean;
   UserId: number;
   userName: string;
-  UserAvatar?: string;
+  userAvatar?: string;
 }
 
 export class PostConstructor {
@@ -20,7 +20,7 @@ export class PostConstructor {
     images: [],
     UserId: null,
     userName: '',
-    UserAvatar: '',
+    userAvatar: '',
   };
 
   constructor(data: any) {
@@ -34,7 +34,7 @@ export class PostConstructor {
       );
       this.post.UserId = data.User;
       this.post.userName = data.User.name + ' ' + data.User.surname;
-      this.post.UserAvatar = data.User.img && process.env.NEXT_PUBLIC_IMAGES_URL + data.User.img;
+      this.post.userAvatar = data.User.img && process.env.NEXT_PUBLIC_IMAGES_URL + data.User.img;
     } catch (e) {
       console.error(e);
     }

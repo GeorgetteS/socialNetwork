@@ -12,9 +12,6 @@ export const chatApi = createApi({
   endpoints: (build) => ({
     getChatsByUserId: build.query(new GetChatsByUserIdQuery()),
     getMessages: build.query(new GetMessagesByChatIdQuery()),
-
-    //@ts-ignore all nice
-    //  deletePost: build.query(new GetPostsByUserIdQuery()),
   }),
 });
 

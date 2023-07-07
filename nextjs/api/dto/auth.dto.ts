@@ -1,4 +1,4 @@
-import { userDTO } from './userAuth.dto';
+import { userAuthDTO } from './userAuth.dto';
 
 export interface LoginFormDTO {
   email: string;
@@ -15,5 +15,5 @@ export interface RegistrstionFormDTO {
 export interface LoginResponseDTO {
   accessToken: string;
   refreshToken: string;
-  user: userDTO;
+  user: userAuthDTO;
 }

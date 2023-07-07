@@ -1,5 +1,5 @@
 import { Button, Input } from 'antd';
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/dist/client/image';
 import { useSelector } from 'react-redux';
 
@@ -7,7 +7,7 @@ import { socket } from '../../socket';
 
 import { userIdSelector } from '../../redux/user/userSelectors';
 
-export const MessagePublishPanel: FC = ({ ChatId }: { ChatId: number }) => {
+export const MessagePublishPanel = ({ ChatId }: { ChatId: number }) => {
   const [messageValue, setMessageValue] = useState('');
 
   const UserId = useSelector(userIdSelector);

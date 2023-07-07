@@ -1,6 +1,6 @@
 import { AuthPanel } from '../components/auth/AuthPanel';
 
-const autn = () => {
+const Autn = () => {
   return (
     <div className="">
       <AuthPanel />{' '}
@@ -8,4 +8,4 @@ const autn = () => {
   );
 };
 
-export default autn;
+export default Autn;
