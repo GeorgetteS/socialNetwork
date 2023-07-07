@@ -6,6 +6,7 @@ import { UserProfileView } from './UserProfileView';
 import { useGetQuerySkip } from '../../hook/useGetQuerySkip';
 import { Posts } from './Posts';
 import { UserInfo } from './UserInfo';
+import { Friends } from './Friends';
 
 export interface IUserProfileInfo {
   currentUser: string | string[];
@@ -26,6 +27,7 @@ export const UserProfile: FC = () => {
       postPublishPanel={isMine && <PostPublishPanel />}
       posts={<Posts isMine={isMine} currentUser={currentUser} skip={skip} />}
       userInfo={<UserInfo isMine={isMine} currentUser={currentUser} skip={skip} />}
+      social={<Friends isMine={isMine} currentUser={currentUser} skip={skip} />}
     />
   );
 };

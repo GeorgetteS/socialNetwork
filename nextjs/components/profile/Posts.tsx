@@ -1,7 +1,7 @@
 import { Spin } from 'antd';
 
-import { useGetPostsByUserIdQuery } from '../../api/postApi/postApi';
-import { postDTO } from '../../api/postApi/postConstructor';
+import { useGetPostsByUserIdQuery } from '../../restApi/postApi/postApi';
+import { postDTO } from '../../restApi/postApi/postConstructor';
 import { Post } from './Post';
 import { IUserProfileInfo } from './UserProfile';
 

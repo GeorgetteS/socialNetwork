@@ -10,7 +10,7 @@ import type { UploadFile, UploadProps } from 'antd/es/upload/interface';
 import styles from '../../styles/PostPublishPanel.module.css';
 
 import { userIdSelector } from '../../redux/user/userSelectors';
-import { useSetPostMutation } from '../../api/postApi/postApi';
+import { useSetPostMutation } from '../../restApi/postApi/postApi';
 import { allowedExtensionsImg } from '../constants';
 
 export const PostPublishPanel: FC = () => {

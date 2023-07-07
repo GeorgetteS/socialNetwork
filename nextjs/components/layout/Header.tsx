@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import { Button } from 'antd';
 
-import { useLogoutMutation } from '../../api/authApi/authApi';
+import { useLogoutMutation } from '../../restApi/authApi/authApi';
 
 import { HeaderView } from './HeaderView';
 import { InputSelectUser } from '../form/InputSelectUser/InputSelectUser';

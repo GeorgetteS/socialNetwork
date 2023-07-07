@@ -3,9 +3,9 @@ import { Button, Card, Space, Upload, message } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import ImgCrop from 'antd-img-crop';
 
-import { userDTO } from '../../api/userApi/userConstructor';
+import { userDTO } from '../../restApi/userApi/userConstructor';
 import { AvatarUi } from '../../UI/AvatarUi';
-import { usePatchUserMutation } from '../../api/userApi/userApi';
+import { usePatchUserMutation } from '../../restApi/userApi/userApi';
 import { allowedExtensionsImg } from '../constants';
 
 export const ProfileEditor: FC<userDTO> = ({ avatar, about, id }) => {

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { ConfigProvider } from 'antd';
 
 import { store } from '../redux/store';
-import { useCheckAuthQuery } from '../api/authApi/authApi';
+import { useCheckAuthQuery } from '../restApi/authApi/authApi';
 
 import { socket } from '../socket';
 

@@ -2,10 +2,10 @@ import { useRouter } from 'next/router';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { Select, Skeleton, Spin } from 'antd';
 
-import { userDTO } from '../../../api/userApi/userConstructor';
+import { userDTO } from '../../../restApi/userApi/userConstructor';
 import { InputSelect, InputSelectProps } from '../InputSelect/InputSelect';
-import { useLazyGetUserListQuery } from '../../../api/userApi/userApi';
-import { UserListQueryParams } from '../../../api/userApi/getUserListQuery';
+import { useLazyGetUserListQuery } from '../../../restApi/userApi/userApi';
+import { UserListQueryParams } from '../../../restApi/userApi/getUserListQuery';
 import { AvatarUi } from '../../../UI/AvatarUi';
 import { useDebounce } from '../../../hook/useDebounce';
 

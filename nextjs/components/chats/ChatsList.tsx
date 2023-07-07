@@ -1,6 +1,6 @@
 import { Spin } from 'antd';
 
-import { useGetChatsByUserIdQuery } from '../../api/chatApi/chatApi';
+import { useGetChatsByUserIdQuery } from '../../restApi/chatApi/chatApi';
 import { ChatItem } from './ChatItem';
 import { socket } from '../../socket';
 import { useGetQuerySkip } from '../../hook/useGetQuerySkip';

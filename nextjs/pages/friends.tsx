@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { AppLayout } from '../components/layout/AppLayout';
 
-const Friends: FC = () => {
+const FriendsPage: FC = () => {
   return (
     <AppLayout>
       <h1>Hello World!</h1>
@@ -10,4 +10,4 @@ const Friends: FC = () => {
   );
 };
 
-export default Friends;
+export default FriendsPage;

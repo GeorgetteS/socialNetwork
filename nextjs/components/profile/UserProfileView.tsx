@@ -1,20 +1,30 @@
 import { ReactNode } from 'react';
-import { Space } from 'antd';
+
+import styles from '../../styles/UserProfile.module.css';
 
 interface IUserProfileView {
   userInfo: ReactNode;
   postPublishPanel?: ReactNode;
   posts: ReactNode;
+  social: ReactNode;
 }
 
-export const UserProfileView = ({ userInfo, postPublishPanel, posts }: IUserProfileView) => {
+export const UserProfileView = ({
+  userInfo,
+  postPublishPanel,
+  posts,
+  social,
+}: IUserProfileView) => {
   return (
-    <Space direction="vertical" size="middle" style={{ display: 'flex', maxWidth: 550 }}>
+    <div className={styles.main_column}>
       {userInfo}
-      {postPublishPanel}
-      <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-        {posts}
-      </Space>
-    </Space>
+      <div className={styles.main_content}>
+        <div className={styles.posts}>
+          {postPublishPanel}
+          {posts}
+        </div>
+        <div className={styles.social}>{social}</div>
+      </div>
+    </div>
   );
 };

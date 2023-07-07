@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 
 import { Spin } from 'antd';
 
-import { messageConstructor, messageDTO } from '../../api/chatApi/messageConstructor';
+import { messageConstructor, messageDTO } from '../../restApi/chatApi/messageConstructor';
 import { AvatarUi } from '../../UI/AvatarUi';
 import { socket } from '../../socket';
-import { useLazyGetMessagesQuery } from '../../api/chatApi/chatApi';
+import { useLazyGetMessagesQuery } from '../../restApi/chatApi/chatApi';
 
 export const Messages = ({
   currentChat,

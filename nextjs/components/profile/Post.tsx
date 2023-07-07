@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import styles from '../../styles/Post.module.css';
 import { AvatarUi } from '../../UI/AvatarUi';
-import { postDTO } from '../../api/postApi/postConstructor';
+import { postDTO } from '../../restApi/postApi/postConstructor';
 
 type TPost = postDTO;
 

@@ -3,7 +3,7 @@ import { Button, Card, Skeleton } from 'antd';
 
 import { AvatarUi } from '../../UI/AvatarUi';
 
-import { useGetUserQuery } from '../../api/userApi/userApi';
+import { useGetUserQuery } from '../../restApi/userApi/userApi';
 import { IUserProfileInfo } from './UserProfile';
 
 export const UserInfo = ({ isMine, currentUser, skip }: IUserProfileInfo) => {

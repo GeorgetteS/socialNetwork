@@ -9,9 +9,9 @@ import userRouter from './userRouter.js';
 const router = new Router();
 
 router.use('/', authRouter);
-router.use('/friedns', authMiddleware, friendRouter);
+router.use('/friends', friendRouter);
 router.use('/chats', chatRouter);
-router.use('/posts', authMiddleware, postRouter);
+router.use('/posts', postRouter);
 router.use('/users', userRouter);
 
 export default router;

@@ -1,10 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
 import user from './user/userSlice';
-import { authApi } from '../api/authApi/authApi';
-import { postApi } from '../api/postApi/postApi';
-import { userApi } from '../api/userApi/userApi';
-import { chatApi } from '../api/chatApi/chatApi';
+import { authApi } from '../restApi/authApi/authApi';
+import { postApi } from '../restApi/postApi/postApi';
+import { userApi } from '../restApi/userApi/userApi';
+import { chatApi } from '../restApi/chatApi/chatApi';
+import { friendApi } from '../restApi/friendApi/friendApi';
 
 export function makeStore() {
   return configureStore({
@@ -14,13 +15,15 @@ export function makeStore() {
       [postApi.reducerPath]: postApi.reducer,
       [userApi.reducerPath]: userApi.reducer,
       [chatApi.reducerPath]: chatApi.reducer,
+      [friendApi.reducerPath]: friendApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware()
         .concat(authApi.middleware)
         .concat(postApi.middleware)
         .concat(userApi.middleware)
-        .concat(chatApi.middleware),
+        .concat(chatApi.middleware)
+        .concat(friendApi.middleware),
   });
 }
 

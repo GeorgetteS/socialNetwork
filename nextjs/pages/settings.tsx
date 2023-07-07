@@ -5,7 +5,7 @@ import { Skeleton } from 'antd';
 
 import { AppLayout } from '../components/layout/AppLayout';
 import { ProfileEditor } from '../components/settings/ProfileEditor';
-import { useGetUserQuery } from '../api/userApi/userApi';
+import { useGetUserQuery } from '../restApi/userApi/userApi';
 import { userIdSelector } from '../redux/user/userSelectors';
 
 const Settings: FC = () => {
