@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const nextConfig = {
+  reactStrictMode: true,
+  productionBrowserSourceMaps: true,
   images: {
     remotePatterns: [
       {
