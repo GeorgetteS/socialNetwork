@@ -1,15 +1,12 @@
 import { useRouter } from 'next/router';
-// import { useSelector } from 'react-redux';
 import { FC } from 'react';
 import { Button, Form, Input, notification } from 'antd';
 
 import { LoginFormDTO, LoginResponseDTO } from '../../restApi/dto/auth.dto';
 import { useLoginMutation } from '../../restApi/authApi/authApi';
-// import { userIdSelector } from '../../redux/user/userSelectors';
 
 export const LoginForm: FC = () => {
   const [login] = useLoginMutation();
-  // const UserId = useSelector(userIdSelector);
   const router = useRouter();
 
   const onSubmit = (userData: LoginFormDTO) => {
