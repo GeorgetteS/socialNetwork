@@ -1,11 +1,11 @@
-import { FC, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { Messages } from './Messages';
 import { MessagePublishPanel } from './MessagePublishPanel';
 import styles from '../../styles/Chats.module.css';
 import { ChatsList } from './ChatsList';
 
-export const Chats: FC = () => {
+const Chats = () => {
   const [currentChat, setCurrentChat] = useState(null);
 
   const messagesContainerRef = useRef(null);
@@ -48,3 +48,5 @@ export const Chats: FC = () => {
     </div>
   );
 };
+
+export default Chats;

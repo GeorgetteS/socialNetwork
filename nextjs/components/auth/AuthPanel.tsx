@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 import { Tabs } from 'antd';
 
 import { RegistrationForm } from './RegistrationForm';
@@ -20,10 +18,12 @@ const items = [
   },
 ];
 
-export const AuthPanel: FC = () => {
+const AuthPanel = () => {
   return (
     <div className={styles.auth_panel}>
       <Tabs items={items}></Tabs>
     </div>
   );
 };
+
+export default AuthPanel;

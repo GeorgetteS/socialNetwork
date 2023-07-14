@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { Button, Card, Space, Upload, message } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import ImgCrop from 'antd-img-crop';
@@ -8,7 +8,7 @@ import { AvatarUi } from '../../UI/AvatarUi';
 import { usePatchUserMutation } from '../../restApi/userApi/userApi';
 import { allowedExtensionsImg } from '../constants';
 
-export const ProfileEditor: FC<userDTO> = ({ avatar, about, id }) => {
+export const ProfileEditor = ({ avatar, about, id }: userDTO) => {
   const [textAreaValue, setTextAreaValue] = useState(about);
   const [isInputValuechanged, setInputValueChanged] = useState(false);
   const [patchUser] = usePatchUserMutation();

@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { Avatar } from 'antd';
 
 import styles from '../styles/AvatarUi.module.css';
@@ -11,7 +10,7 @@ export interface IAvatarUi {
   cursorPointer?: boolean;
 }
 
-export const AvatarUi: FC<IAvatarUi> = ({ avatar = '', size, title, text, cursorPointer }) => {
+export const AvatarUi = ({ avatar = '', size, title, text, cursorPointer }: IAvatarUi) => {
   return (
     <div className={styles.row}>
       <Avatar

@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { Card, Carousel } from 'antd';
 import Image from 'next/image';
 
@@ -8,14 +7,7 @@ import { postDTO } from '../../restApi/postApi/postConstructor';
 
 type TPost = postDTO;
 
-export const Post: FC<TPost> = ({
-  text = '',
-  images = [],
-  userAvatar,
-  userName,
-  date,
-  isUpdated,
-}) => {
+export const Post = ({ text = '', images = [], userAvatar, userName, date, isUpdated }: TPost) => {
   const PostCarousel = images.length ? (
     <Carousel dotPosition="bottom">
       {images.map((imageUrl, i) => {

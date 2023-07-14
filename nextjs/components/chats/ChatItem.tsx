@@ -16,7 +16,7 @@ export const ChatItem = ({ onClickChatItem, isActive, id, ...props }: ChatItemTy
   };
 
   return (
-    <div onClick={onClickIt} className={isActive && styles.active}>
+    <div onClick={onClickIt} className={isActive ? styles.active : ''}>
       <AvatarUi {...props} />
     </div>
   );

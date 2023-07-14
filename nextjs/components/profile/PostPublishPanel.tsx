@@ -1,5 +1,5 @@
 import React from 'react';
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { Button, Card, Upload, message, notification } from 'antd';
 import { useSelector } from 'react-redux';
 
@@ -13,7 +13,7 @@ import { userIdSelector } from '../../redux/user/userSelectors';
 import { useSetPostMutation } from '../../restApi/postApi/postApi';
 import { allowedExtensionsImg } from '../constants';
 
-export const PostPublishPanel: FC = () => {
+export const PostPublishPanel = () => {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [textAreaValue, setTextAreaValue] = useState('');
   const UserId = useSelector(userIdSelector);

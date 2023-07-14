@@ -1,11 +1,13 @@
-import { AuthPanel } from '../components/auth/AuthPanel';
+import dynamic from 'next/dynamic';
 
-const Index = () => {
+const DynamicAuthPanel = dynamic(() => import('../components/auth/AuthPanel'));
+
+const Autn = () => {
   return (
     <div className="">
-      <AuthPanel />
+      <DynamicAuthPanel />{' '}
     </div>
   );
 };
 
-export default Index;
+export default Autn;

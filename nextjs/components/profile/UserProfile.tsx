@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import { FC } from 'react';
 
 import { PostPublishPanel } from './PostPublishPanel';
 import { UserProfileView } from './UserProfileView';
@@ -14,7 +13,7 @@ export interface IUserProfileInfo {
   skip: { skip: boolean };
 }
 
-export const UserProfile: FC = () => {
+const UserProfile = () => {
   const router = useRouter();
   const currentUser = router.query.id;
 
@@ -26,8 +25,6 @@ export const UserProfile: FC = () => {
 
   const isMine = +currentUser === +UserId;
 
-  console.log(skip, 'skip', currentUser);
-
   return (
     <UserProfileView
       postPublishPanel={isMine && <PostPublishPanel />}
@@ -37,3 +34,5 @@ export const UserProfile: FC = () => {
     />
   );
 };
+
+export default UserProfile;

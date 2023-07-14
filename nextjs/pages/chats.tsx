@@ -1,12 +1,13 @@
-import { FC } from 'react';
+import dynamic from 'next/dynamic';
 
 import { AppLayout } from '../components/layout/AppLayout';
-import { Chats } from '../components/chats/Chats';
 
-const ChatsPage: FC = () => {
+const DynamicChats = dynamic(() => import('../components/chats/Chats'));
+
+const ChatsPage = () => {
   return (
     <AppLayout>
-      <Chats />
+      <DynamicChats />
     </AppLayout>
   );
 };

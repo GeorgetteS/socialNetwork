@@ -7,8 +7,6 @@ export class GetFriendsQuery {
     try {
       const { friends, countOfFriends } = response;
 
-      console.log(friends);
-
       const friendsList = friends.map((friendData) =>
         new FriendConstructor(friendData).getField(),
       ) as friendDTO[];

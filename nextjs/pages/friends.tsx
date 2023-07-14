@@ -1,8 +1,6 @@
-import { FC } from 'react';
-
 import { AppLayout } from '../components/layout/AppLayout';
 
-const FriendsPage: FC = () => {
+const FriendsPage = () => {
   return (
     <AppLayout>
       <h1>Hello World!</h1>

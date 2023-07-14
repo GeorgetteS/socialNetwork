@@ -1,11 +1,10 @@
-import { FC } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Form, Input, notification } from 'antd';
 
 import { LoginResponseDTO, RegistrstionFormDTO } from '../../restApi/dto/auth.dto';
 import { useRegistrationMutation } from '../../restApi/authApi/authApi';
 
-export const RegistrationForm: FC = () => {
+export const RegistrationForm = () => {
   const [registration] = useRegistrationMutation();
 
   const router = useRouter();

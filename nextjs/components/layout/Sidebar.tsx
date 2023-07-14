@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { Layout, Menu } from 'antd';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
@@ -12,7 +11,7 @@ const menu = [
   { name: 'Настройки', path: 'settings' },
 ];
 
-export const Sidebar: FC = () => {
+export const Sidebar = () => {
   const router = useRouter();
   const UserId = useSelector(userIdSelector);
 

@@ -1,12 +1,13 @@
-import { FC } from 'react';
+import dynamic from 'next/dynamic';
 
 import { AppLayout } from '../../components/layout/AppLayout';
-import { UserProfile } from '../../components/profile/UserProfile';
 
-const Profile: FC = () => {
+const DynamicUserProfile = dynamic(() => import('../../components/profile/UserProfile'));
+
+const Profile = () => {
   return (
     <AppLayout>
-      <UserProfile />
+      <DynamicUserProfile />
     </AppLayout>
   );
 };

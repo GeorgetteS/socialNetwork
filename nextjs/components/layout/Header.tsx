@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import { FC } from 'react';
 
 import { Button } from 'antd';
 
@@ -8,7 +7,7 @@ import { useLogoutMutation } from '../../restApi/authApi/authApi';
 import { HeaderView } from './HeaderView';
 import { InputSelectUser } from '../form/InputSelectUser/InputSelectUser';
 
-export const Header: FC = () => {
+export const Header = () => {
   const [logout] = useLogoutMutation();
   const router = useRouter();
 

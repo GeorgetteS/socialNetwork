@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
-import { FC } from 'react';
+
 import { Button, Form, Input, notification } from 'antd';
 
 import { LoginFormDTO, LoginResponseDTO } from '../../restApi/dto/auth.dto';
 import { useLoginMutation } from '../../restApi/authApi/authApi';
 
-export const LoginForm: FC = () => {
+export const LoginForm = () => {
   const [login] = useLoginMutation();
   const router = useRouter();
 
