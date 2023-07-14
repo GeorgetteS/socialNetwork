@@ -15,8 +15,6 @@ export const Friends = ({ currentUser, skip }: IUserProfileInfo) => {
 
   const { friendsList = [], countOfFriends = null } = friendsData;
 
-  console.log(friendsList, 'friendsList');
-
   return (
     <div className={styles.root}>
       <Card title={'Друзья ' + countOfFriends}>

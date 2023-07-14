@@ -18,9 +18,15 @@ export const UserProfile: FC = () => {
   const router = useRouter();
   const currentUser = router.query.id;
 
-  const { UserId, skip } = useGetQuerySkip();
+  const { UserId } = useGetQuerySkip();
+
+  const skip = {
+    skip: currentUser === undefined,
+  };
 
   const isMine = +currentUser === +UserId;
+
+  console.log(skip, 'skip', currentUser);
 
   return (
     <UserProfileView
