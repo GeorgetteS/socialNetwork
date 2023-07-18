@@ -1,38 +1,34 @@
-import { Layout, Menu } from 'antd';
-import { useRouter } from 'next/router';
+import { Layout } from 'antd';
+import Link from 'next/link';
 import { useSelector } from 'react-redux';
+
+import styles from '../../styles/Sidebar.module.css';
 
 import { userIdSelector } from '../../redux/user/userSelectors';
 
 const menu = [
-  { name: 'Профиль', path: 'profile' },
-  { name: 'Чаты', path: 'chats' },
-  { name: 'Друзья', path: 'friends' },
-  { name: 'Настройки', path: 'settings' },
+  { name: 'Профиль', path: '/profile' },
+  { name: 'Чаты', path: '/chats' },
+  { name: 'Друзья', path: '/friends' },
+  { name: 'Настройки', path: '/settings' },
 ];
 
 export const Sidebar = () => {
-  const router = useRouter();
   const UserId = useSelector(userIdSelector);
 
-  // const path = router.pathname.split('/')[1];
-
-  const linkTo = (path) => {
-    if (path === 'profile') {
-      router.push('/' + path + '/' + UserId);
-    } else {
-      router.push('/' + path);
-    }
-  };
   return (
     <Layout.Sider theme="light">
-      <Menu
-        items={menu.map((item) => ({
-          key: item.path,
-          onClick: () => linkTo(item.path),
-          label: item.name,
-        }))}
-      />
+      <nav className={styles.nav}>
+        {menu.map((item) => {
+          return (
+            <Link
+              key={item.path}
+              href={item.path === '/profile' ? `/profile/${UserId}` : item.path}>
+              {item.name}
+            </Link>
+          );
+        })}
+      </nav>
     </Layout.Sider>
   );
 };
