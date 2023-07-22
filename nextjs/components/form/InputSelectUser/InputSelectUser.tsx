@@ -6,7 +6,7 @@ import { userDTO } from '../../../restApi/userApi/userConstructor';
 import { InputSelect, InputSelectProps } from '../InputSelect/InputSelect';
 import { useLazyGetUserListQuery } from '../../../restApi/userApi/userApi';
 import { UserListQueryParams } from '../../../restApi/userApi/getUserListQuery';
-import { AvatarUi } from '../../../UI/AvatarUi';
+import { UserUi } from '../../../UI/UserUi';
 import { useDebounce } from '../../../hook/useDebounce';
 
 type InputSelectUserProps = Omit<InputSelectProps<userDTO['id']>, 'options'>;
@@ -73,7 +73,7 @@ export const InputSelectUser = ({ ...props }: InputSelectUserProps) => {
       {options.map((option) => {
         return (
           <Select.Option key={option.id}>
-            <AvatarUi avatar={option.avatar} title={option.fullname} />
+            <UserUi avatar={option.avatar} title={option.fullname} />
           </Select.Option>
         );
       })}

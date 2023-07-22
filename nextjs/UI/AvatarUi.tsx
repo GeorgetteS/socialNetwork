@@ -1,29 +1,29 @@
-import { Avatar } from 'antd';
+import React, { CSSProperties } from 'react';
+import Image from 'next/image';
 
-import styles from '../styles/AvatarUi.module.css';
-
-export interface IAvatarUi {
-  avatar?: string;
+const AvatarUi = ({
+  src,
+  alt,
+  size = 64,
+  className,
+  style,
+}: {
+  src: string;
+  alt?: string;
+  className: string;
   size?: number;
-  title: string;
-  text?: string;
-  cursorPointer?: boolean;
-}
-
-export const AvatarUi = ({ avatar = '', size, title, text, cursorPointer }: IAvatarUi) => {
+  style?: CSSProperties;
+}) => {
   return (
-    <div className={styles.row}>
-      <Avatar
-        style={{ cursor: cursorPointer ? 'pointer' : 'auto' }}
-        shape="circle"
-        size={size || 32}
-        className={styles.avatar}
-        src={avatar || '/noAvatar.svg'}
-      />
-      <div className={styles.column}>
-        <div className={styles.title}>{title}</div>
-        {text && <span className={styles.text}>{text}</span>}
-      </div>
-    </div>
+    <Image
+      src={src}
+      className={className}
+      alt={alt}
+      width={size}
+      height={size}
+      style={{ borderRadius: '50%', ...style }}
+    />
   );
 };
+
+export default AvatarUi;

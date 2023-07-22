@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Spin } from 'antd';
 
 import { messageConstructor, messageDTO } from '../../restApi/chatApi/messageConstructor';
-import { AvatarUi } from '../../UI/AvatarUi';
+import { UserUi } from '../../UI/UserUi';
 import { socket } from '../../socket';
 import { useLazyGetMessagesQuery } from '../../restApi/chatApi/chatApi';
 
@@ -60,7 +60,7 @@ export const Messages = ({
     <>
       {messages.map((message) => {
         return (
-          <AvatarUi
+          <UserUi
             key={message.id}
             avatar={message.userAvatar}
             title={message.userName}

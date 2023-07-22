@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { Button, Card, Skeleton } from 'antd';
 
-import { AvatarUi } from '../../UI/AvatarUi';
+import { UserUi } from '../../UI/UserUi';
 
 import { useGetUserQuery } from '../../restApi/userApi/userApi';
 import { IUserProfileInfo } from './UserProfile';
@@ -25,7 +25,7 @@ export const UserInfo = ({ isMine, currentUser, skip }: IUserProfileInfo) => {
     <Card
       bodyStyle={{ display: userData?.about ? 'block' : 'none' }}
       extra={edit}
-      title={<AvatarUi size={54} title={userData?.fullname} avatar={userData?.avatar} />}>
+      title={<UserUi size={54} title={userData?.fullname} avatar={userData?.avatar} />}>
       {userData?.about}
     </Card>
   );

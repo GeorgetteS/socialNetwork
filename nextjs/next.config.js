@@ -9,15 +9,9 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   generateEtags: true,
+
   images: {
-    remotePatterns: [
-      {
-        protocol: process.env.NEXT_PUBLIC_PROTOCOL,
-        hostname: process.env.NEXT_PUBLIC_HOSTNAME,
-        port: process.env.NEXT_PUBLIC_PORT,
-        pathname: process.env.NEXT_PUBLIC_HOST_IMAGES,
-      },
-    ],
+    domains: [process.env.NEXT_PUBLIC_HOSTNAME],
   },
 };
 

@@ -2,7 +2,7 @@ import { Card, Carousel } from 'antd';
 import Image from 'next/image';
 
 import styles from '../../styles/Post.module.css';
-import { AvatarUi } from '../../UI/AvatarUi';
+import { UserUi } from '../../UI/UserUi';
 import { postDTO } from '../../restApi/postApi/postConstructor';
 
 type TPost = postDTO;
@@ -20,7 +20,7 @@ export const Post = ({ text = '', images = [], userAvatar, userName, date, isUpd
     <Card
       className={styles.root}
       title={
-        <AvatarUi
+        <UserUi
           title={userName}
           size={48}
           text={isUpdated ? `обновлен ${date}` : date}

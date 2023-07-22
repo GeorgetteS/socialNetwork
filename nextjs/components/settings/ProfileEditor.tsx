@@ -4,7 +4,7 @@ import TextArea from 'antd/lib/input/TextArea';
 import ImgCrop from 'antd-img-crop';
 
 import { userDTO } from '../../restApi/userApi/userConstructor';
-import { AvatarUi } from '../../UI/AvatarUi';
+import { UserUi } from '../../UI/UserUi';
 import { usePatchUserMutation } from '../../restApi/userApi/userApi';
 import { allowedExtensionsImg } from '../constants';
 
@@ -59,7 +59,7 @@ export const ProfileEditor = ({ avatar, about, id }: userDTO) => {
             beforeUpload={checkExtension}
             accept={allowedExtensionsImg.join(', ')}
             customRequest={patchFile}>
-            <AvatarUi
+            <UserUi
               size={64}
               avatar={avatar || 'downloadFoto.png'}
               cursorPointer={true}
