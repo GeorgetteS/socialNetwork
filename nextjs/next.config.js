@@ -6,14 +6,16 @@ dotenv.config();
 const nextConfig = {
   reactStrictMode: true,
   productionBrowserSourceMaps: false,
-  trailingSlash: true,
+  compress: true,
+  poweredByHeader: false,
+  generateEtags: true,
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
+        protocol: process.env.NEXT_PUBLIC_PROTOCOL,
         hostname: process.env.NEXT_PUBLIC_HOSTNAME,
         port: process.env.NEXT_PUBLIC_PORT,
-        pathname: '/images/**',
+        pathname: process.env.NEXT_PUBLIC_HOST_IMAGES,
       },
     ],
   },

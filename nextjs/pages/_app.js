@@ -2,7 +2,6 @@ import '../styles/global.css';
 import { Provider } from 'react-redux';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { ConfigProvider } from 'antd';
 
 import { store } from '../redux/store';
 import { useCheckAuthQuery } from '../restApi/authApi/authApi';
@@ -33,11 +32,7 @@ const MyApp = ({ Component, pageProps }) => {
     return <div>Loading...</div>;
   }
 
-  return (
-    <ConfigProvider theme="light">
-      <Component {...pageProps} />
-    </ConfigProvider>
-  );
+  return <Component {...pageProps} />;
 };
 
 const withReduxStore = (WrappedComponent) => {
