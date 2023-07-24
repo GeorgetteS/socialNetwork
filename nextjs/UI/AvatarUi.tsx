@@ -18,7 +18,7 @@ const AvatarUi = ({
     <Image
       src={src}
       className={className}
-      alt={alt}
+      alt={alt || src}
       width={size}
       height={size}
       style={{ borderRadius: '50%', ...style }}

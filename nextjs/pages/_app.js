@@ -1,7 +1,7 @@
 import '../styles/global.css';
 import { Provider } from 'react-redux';
 import { useEffect } from 'react';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 import { store } from '../redux/store';
 import { useCheckAuthQuery } from '../restApi/authApi/authApi';
@@ -9,18 +9,14 @@ import { useCheckAuthQuery } from '../restApi/authApi/authApi';
 import { socket } from '../socket';
 
 const MyApp = ({ Component, pageProps }) => {
-  const {
-    isLoading,
-    //  error,
-    //  data
-  } = useCheckAuthQuery();
-  // const router = useRouter();
+  const { isLoading, error } = useCheckAuthQuery();
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   if (error) {
-  //     router.push('/');
-  //   }
-  // }, [error, data, router]);
+  useEffect(() => {
+    if (error && router.pathname !== '/') {
+      router.push('/');
+    }
+  }, [error]);
 
   useEffect(() => {
     socket.on('error', (message) => {
