@@ -31,7 +31,7 @@ class AuthController {
       res.cookie('refreshToken', userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
-        domain: 'localhost',
+        domain: process.env.CLIENT_DOMAIN,
       });
 
       res.json(userData);
