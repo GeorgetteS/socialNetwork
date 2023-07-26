@@ -10,8 +10,10 @@ const nextConfig = {
   poweredByHeader: false,
   generateEtags: true,
   output: 'export',
+  // images.unoptimized = true
   images: {
     domains: [process.env.NEXT_PUBLIC_HOSTNAME],
+    unoptimized: true,
   },
 };
 
