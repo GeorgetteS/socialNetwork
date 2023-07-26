@@ -9,7 +9,7 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   generateEtags: true,
-
+  output: 'export',
   images: {
     domains: [process.env.NEXT_PUBLIC_HOSTNAME],
   },
