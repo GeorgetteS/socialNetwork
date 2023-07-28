@@ -5,7 +5,7 @@ class FileServise {
   async deleteFile(filename) {
     try {
       const __dirname = path.resolve();
-      const filepath = path.join(__dirname, 'images', filename);
+      const filepath = path.join(__dirname, 'public', filename);
       console.log(filepath, 'delete file');
       fs.unlink(filepath, (e) => {
         if (e) {
