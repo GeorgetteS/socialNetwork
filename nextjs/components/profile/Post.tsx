@@ -8,8 +8,10 @@ import { postDTO } from '../../restApi/postApi/postConstructor';
 type TPost = postDTO;
 
 export const Post = ({ text = '', images = [], userAvatar, userName, date, isUpdated }: TPost) => {
+  console.log(images);
+
   const PostCarousel = images.length ? (
-    <Carousel dotPosition="bottom">
+    <Carousel style={{ width: '500px' }} dotPosition="bottom">
       {images.map((imageUrl, i) => {
         return <Image key={i} src={imageUrl} width={500} height={500} alt="PostIImage"></Image>;
       })}

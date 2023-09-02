@@ -5,9 +5,10 @@ class PostController {
     try {
       const { text, UserId } = req.body;
       const { postImages } = req.files;
+      console.log(postImages, 'sdd');
       let fileNames;
       if (postImages) {
-        fileNames = postImages.map((postImage) => postImage.filename);
+        fileNames = postImages.map((postImage) => postImage.path);
       }
 
       const post = await PostService.create(text, UserId, fileNames);

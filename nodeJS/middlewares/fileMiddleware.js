@@ -31,14 +31,4 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// export async function deleteImage(public_id) {
-//   v2.uploader.destroy(public_id, function (error, result) {
-//     if (error) {
-//       console.log(error);
-//     } else {
-//       console.log(result);
-//     }
-//   });
-// }
-
 export const upload = multer({ storage, fileFilter });
