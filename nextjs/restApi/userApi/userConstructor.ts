@@ -18,7 +18,7 @@ export class userConstructor {
       this.user.id = data.id;
       this.user.fullname = data.name + ' ' + data.surname;
       this.user.about = data.about;
-      this.user.avatar = data.img && process.env.NEXT_PUBLIC_IMAGES_URL + data.img;
+      this.user.avatar = data.img && data.img;
     } catch (e) {
       console.log(e);
     }

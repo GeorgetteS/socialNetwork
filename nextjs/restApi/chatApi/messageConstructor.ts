@@ -31,7 +31,7 @@ export class messageConstructor {
       this.message.ChatId = data.ChatId;
       this.message.UserId = data.UserId;
       this.message.userName = data.User.name + ' ' + data.User.surname;
-      this.message.userAvatar = data.User.img && process.env.NEXT_PUBLIC_IMAGES_URL + data.User.img;
+      this.message.userAvatar = data.User.img && data.User.img;
       this.message.date = transformDate(data.updatedAt);
     } catch (e) {
       console.error(e);

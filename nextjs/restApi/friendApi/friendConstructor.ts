@@ -24,7 +24,7 @@ export class FriendConstructor {
       this.friend.FriendId = data.FriendId;
       this.friend.UserId = data.UserId;
       this.friend.name = data.name;
-      this.friend.avatar = data.img && process.env.NEXT_PUBLIC_IMAGES_URL + data.img;
+      this.friend.avatar = data.img && data.img;
     } catch (e) {
       console.log(e);
     }

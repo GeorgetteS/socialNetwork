@@ -1,6 +1,8 @@
-import { User } from '../models/models.js';
-import fileServise from './fileServise.js';
+import cloudinary from 'cloudinary';
 import { Op } from 'sequelize';
+
+import { User } from '../models/models.js';
+import path from 'path';
 
 class UserService {
   async getUser(id) {
@@ -62,12 +64,22 @@ class UserService {
   async patchUser(id, about, avatar) {
     const changedUser = await User.findOne({ where: { id } });
 
+    console.log(avatar);
+
     if (changedUser.img && avatar) {
-      await fileServise.deleteFile(changedUser.img);
+      const fileName = path.basename(changedUser.img).replace(/\.[^/.]+$/, '');
+      console.log(fileName);
+      cloudinary.v2.uploader.destroy(fileName, function (error, result) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(result);
+        }
+      });
     }
 
     if (avatar) {
-      changedUser.img = avatar.filename;
+      changedUser.img = avatar.path;
     }
 
     if (about) {

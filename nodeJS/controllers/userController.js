@@ -44,6 +44,8 @@ class UserController {
       const { id, about } = req.body;
       const avatar = req.file;
 
+      console.log(id, about, avatar.public_id);
+
       const changedUser = await UserService.patchUser(id, about, avatar);
 
       res.json(changedUser);
