@@ -1,18 +1,21 @@
 import { UserUi, IUserUi } from '../../UI/UserUi';
 
 import styles from '../../styles/ChatItem.module.css';
+import { TChat } from './Chats';
 
 type onClickChat = {
-  id: number;
+  chat: TChat;
   // eslint-disable-next-line no-unused-vars
-  onClickChatItem: (id: number) => void;
+  onClickChatItem: (chat: TChat) => void;
 };
 
 type ChatItemType = IUserUi & onClickChat & { isActive: boolean };
 
-export const ChatItem = ({ onClickChatItem, isActive, id, ...props }: ChatItemType) => {
+export const ChatItem = ({ onClickChatItem, isActive, chat, ...props }: ChatItemType) => {
   const onClickIt = () => {
-    onClickChatItem(id);
+    console.log(chat, 'chat');
+
+    onClickChatItem(chat);
   };
 
   return (

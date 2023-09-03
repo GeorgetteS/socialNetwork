@@ -48,7 +48,7 @@ class ChatService {
   }
 
   async getUsers(ChatId) {
-    const chatUsers = await Chat.findOne({ where: { id: ChatId }, include: [{ model: User }] });
+    const chatUsers = await Chat.findAll({ where: { id: ChatId }, include: [{ model: User }] });
 
     return chatUsers;
   }

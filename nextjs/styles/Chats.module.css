@@ -56,13 +56,17 @@
 	
 }
 
+
+
 .chat_info{
-	position: absolute;
 	z-index: 1;
 	width: 100%;
 	padding: 10px;
 	border-bottom:solid 0.5px rgba(0, 0, 0, 0.2);
 	background: #fff;
+	text-align: left;
+	font-size: 17px;
+
 }
 
 
