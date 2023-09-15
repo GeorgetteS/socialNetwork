@@ -13,7 +13,7 @@ type ChatItemType = IUserUi & onClickChat & { isActive: boolean };
 
 export const ChatItem = ({ onClickChatItem, isActive, chat, ...props }: ChatItemType) => {
   const onClickIt = () => {
-    console.log(chat, 'chat');
+    // console.log(chat, 'chat');
 
     onClickChatItem(chat);
   };

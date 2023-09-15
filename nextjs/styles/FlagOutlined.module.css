@@ -1,0 +1,34 @@
+.root{
+	display: block;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: 0.5px solid #000;
+	position: relative;
+	transition-property:scale;
+	transition-duration: 0.3s;
+
+	flex:  0 0 auto;
+}
+
+.root.active::before{
+	content: '✓';
+
+	color: rgb(255, 255, 255);
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+
+	transform: translate(-50%,-50%) scale(1.5);
+
+	transition-property:scale;
+	transition-duration: 0.3s;
+
+}
+
+
+.root.active{
+background-color: #1677ff;
+
+}

@@ -11,7 +11,7 @@ export const postApi = createApi({
 
   endpoints: (build) => ({
     getPostsByUserId: build.query(new GetPostsByUserIdQuery()),
-    //@ts-ignore all nice
+    // @ts-ignore all nice
     setPost: build.mutation(new SendPostMutation()),
     //  deletePost: build.query(new GetPostsByUserIdQuery()),
   }),

@@ -7,11 +7,26 @@
 	/* flex-wrap: wrap; */
 }
 
+.when_flag{
+	display: flex;
+	flex: auto;
+
+	align-items: center;
+
+	padding: 10px;
+
+	padding-left: 0;
+
+	justify-content: space-between;
+}
+
 .column{
 	display: flex;
 	flex-direction: column;
+	flex: 0 1 100%;
 	/* justify-content: space-between; */
 	row-gap: 3px;
+	line-height: 20px;
 }
 
 .title{

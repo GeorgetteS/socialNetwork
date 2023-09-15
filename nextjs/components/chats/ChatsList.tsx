@@ -35,7 +35,7 @@ export const ChatsList = ({
         onClickChatItem={(selectedChat) => openChat(selectedChat)}
         title={chat.name}
         avatar="/chats.svg"
-        isActive={chat.id === currentChat}
+        isActive={chat.id === currentChat.ChatId}
       />
     );
   });

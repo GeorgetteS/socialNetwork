@@ -13,6 +13,8 @@
 	border-radius: 10px;
 	background: #fff;
 	border: solid 0.5px rgba(0, 0, 0, 0.2);
+	overflow: hidden;
+
 }
 
 .chats_panel{
@@ -22,29 +24,54 @@
 
 }
 
-.chats_wrapper{
+.chats_wrapper {
 	position: absolute;
 	height: 100%;
 	width: 100%;
 	overflow: auto;
-	
 
 }
 
-.chats_wrapper  > * {
+
+
+.chats_wrapper  > div {
 	padding: 0px 5px;
 	border-bottom:solid 0.5px rgba(0, 0, 0, 0.2);
+
 	transition: background 0.15s ease;
 	cursor: pointer;
+
+	
 }
 
-.chats_wrapper  > *:hover {
+.chats_wrapper  > input {
+	width: 100%;
+	padding: 10px;
+	font-size: 17px;
+	position: relative;
+}
+
+
+.chats_wrapper  > div:hover {
 	background: rgba(0, 0, 0, 0.05);
 }
-
+.chats_wrapper  > button:hover {
+	background: rgba(0, 0, 0, 0.05);
+}
 .chats{
 	flex: 0 1 30%;
 }
+
+.chats_new{  
+	position: relative;
+	font-size: 17px;
+	width: 100%;
+	padding: 10px;
+	background-color: #fff;
+	border-bottom:solid 0.5px rgba(0, 0, 0, 0.2);
+}
+
+
 
 .chat{
 	position: relative;
