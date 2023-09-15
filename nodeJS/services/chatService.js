@@ -2,7 +2,7 @@ import { Chat, UserChat, User, Message } from '../models/models.js';
 import ApiError from '../exceptions/apiError.js';
 
 class ChatService {
-  async createChat(isPrivate, name, participants) {
+  async createChat(isPrivate = false, name, participants) {
     const chat = await Chat.create({ isPrivate, name });
 
     const usersChats = participants.map((participant) => {
@@ -54,7 +54,6 @@ class ChatService {
   }
 
   async postMessage(message) {
-    // console.log(message, 'skdjfn');
     const newMessage = await Message.create(message).then((message) =>
       Message.findOne({ where: { id: message.id }, include: [{ model: User }] }),
     );
