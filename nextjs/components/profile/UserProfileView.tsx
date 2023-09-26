@@ -13,8 +13,8 @@ export const UserProfileView = ({
   userInfo,
   postPublishPanel,
   posts,
-  social,
-}: IUserProfileView) => {
+}: // social,
+IUserProfileView) => {
   return (
     <div className={styles.main_column}>
       {userInfo}
@@ -23,7 +23,7 @@ export const UserProfileView = ({
           {postPublishPanel}
           {posts}
         </div>
-        <div className={styles.social}>{social}</div>
+        {/* <div className={styles.social}>{social}</div> */}
       </div>
     </div>
   );

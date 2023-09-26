@@ -77,9 +77,8 @@ export const NewChat = ({ escapeCreateMode }) => {
       }
 
       setSetectedUsers((prev) => [...prev, user]);
-      handleSearch('');
     },
-    [handleSearch, selectedUsers],
+    [selectedUsers],
   );
 
   const deselectUser = (username) => {

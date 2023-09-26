@@ -9,7 +9,7 @@ import { userIdSelector } from '../../redux/user/userSelectors';
 const menu = [
   { name: 'Профиль', path: '/profile' },
   { name: 'Чаты', path: '/chats' },
-  { name: 'Друзья', path: '/friends' },
+  // { name: 'Друзья', path: '/friends' },
   { name: 'Настройки', path: '/settings' },
 ];
 
