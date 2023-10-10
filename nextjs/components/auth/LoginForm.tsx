@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 import { Button, Form, Input, notification } from 'antd';
 
@@ -9,7 +10,10 @@ export const LoginForm = () => {
   const [login] = useLoginMutation();
   const router = useRouter();
 
+  const [isDisabled, setIsDisabled] = useState(false);
+
   const onSubmit = (userData: LoginFormDTO) => {
+    setIsDisabled(true);
     login(userData)
       .unwrap()
       .then((user: LoginResponseDTO) => {
@@ -24,6 +28,9 @@ export const LoginForm = () => {
             message: error.data.message,
           });
         }
+      })
+      .finally(() => {
+        setIsDisabled(false);
       });
   };
 
@@ -51,7 +58,7 @@ export const LoginForm = () => {
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" disabled={isDisabled}>
             Submit
           </Button>
         </Form.Item>

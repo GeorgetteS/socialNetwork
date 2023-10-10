@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { Button, Form, Input, notification } from 'antd';
 
 import { LoginResponseDTO, RegistrstionFormDTO } from '../../restApi/dto/auth.dto';
@@ -6,10 +7,12 @@ import { useRegistrationMutation } from '../../restApi/authApi/authApi';
 
 export const RegistrationForm = () => {
   const [registration] = useRegistrationMutation();
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const router = useRouter();
 
   const onSubmit = (userData: RegistrstionFormDTO) => {
+    setIsDisabled(true);
     registration(userData)
       .unwrap()
       .then((user: LoginResponseDTO) => {
@@ -24,6 +27,9 @@ export const RegistrationForm = () => {
             message: error.data.message,
           });
         }
+      })
+      .finally(() => {
+        setIsDisabled(false);
       });
   };
 
@@ -63,7 +69,7 @@ export const RegistrationForm = () => {
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" disabled={isDisabled}>
             Submit
           </Button>
         </Form.Item>
