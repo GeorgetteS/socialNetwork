@@ -7,6 +7,7 @@ import { store } from '../redux/store';
 import { useCheckAuthQuery } from '../restApi/authApi/authApi';
 
 import { socket } from '../socket';
+import { Spin } from 'antd';
 
 const MyApp = ({ Component, pageProps }) => {
   const { isLoading, error } = useCheckAuthQuery();
@@ -29,7 +30,17 @@ const MyApp = ({ Component, pageProps }) => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '100vh',
+        }}>
+        <Spin />
+      </div>
+    );
   }
 
   return <Component {...pageProps} />;
