@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
-
+import Image from 'next/image';
 import { Button } from 'antd';
+
+import Link from 'next/link';
 
 import { useLogoutMutation } from '../../restApi/authApi/authApi';
 
@@ -15,7 +17,7 @@ export const Header = () => {
     logout('')
       .unwrap()
       .then(() => {
-        router.push('/');
+        router.push('/auth');
       })
       .catch((e) => {
         console.log(e);
@@ -23,7 +25,13 @@ export const Header = () => {
   };
 
   return (
-    <HeaderView rightPlace={<Button onClick={onLogout}>Выйти</Button>}>
+    <HeaderView
+      logo={
+        <Link href={'/'} style={{ height: 40 }}>
+          <Image src={'/logo.svg'} width={40} height={40} alt="logo" priority={true} />
+        </Link>
+      }
+      rightPlace={<Button onClick={onLogout}>Выйти</Button>}>
       <InputSelectUser label="Найти друзей" />
     </HeaderView>
   );

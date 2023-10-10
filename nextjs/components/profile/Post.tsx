@@ -30,9 +30,7 @@ export const Post = ({ text = '', images = [], userAvatar, userName, date, isUpd
         />
       }>
       {text && <Card.Grid style={{ width: '100%' }}>{text}</Card.Grid>}
-      {PostCarousel && <Card.Grid style={{ width: '100%' }}> {PostCarousel}</Card.Grid>}
-      <Card.Grid style={{ width: '100%' }}></Card.Grid>
-      <Card.Grid style={{ width: '100%' }}></Card.Grid>
+      {PostCarousel && <Card.Grid style={{ width: '100%' }}> {PostCarousel}</Card.Grid>}{' '}
     </Card>
   );
 };

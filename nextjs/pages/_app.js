@@ -13,8 +13,8 @@ const MyApp = ({ Component, pageProps }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (error && router.pathname !== '/') {
-      router.push('/');
+    if (error && router.pathname !== '/auth') {
+      router.push('/auth');
     }
   }, [error]);
 
